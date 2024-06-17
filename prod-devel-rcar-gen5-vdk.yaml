@@ -160,6 +160,8 @@ components:
         - [XT_KERNEL_BRANCH, "%{XT_KERNEL_BRANCH}"]
         - [XT_KERNEL_REV, "%{XT_KERNEL_REV}"]
         - [IMAGE_INSTALL:append, " iperf3"]
+        - [IMAGE_INSTALL:append, " qemu-system-aarch64"]
+        - [IMAGE_INSTALL:append, " qemu-keymaps"]
         - [PREFERRED_VERSION_xen-tools, "4.19.0+git%"]
         - [PREFERRED_VERSION_xen, "4.19.0+git%"]
         # Enable xen-virtio distro feature

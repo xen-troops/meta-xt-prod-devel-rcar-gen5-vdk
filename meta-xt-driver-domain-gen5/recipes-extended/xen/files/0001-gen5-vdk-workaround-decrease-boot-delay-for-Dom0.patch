@@ -1,0 +1,33 @@
+From 2b8e280dde0b1b1de1c0471bfbcac41679a65b16 Mon Sep 17 00:00:00 2001
+From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+Date: Mon, 27 May 2024 10:27:46 +0300
+Subject: [PATCH] gen5: vdk: workaround: decrease boot delay for Dom0
+
+To improve simulation speed, delays can be temporary decreased.
+
+Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+---
+ xen/common/warning.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/xen/common/warning.c b/xen/common/warning.c
+index e6e1404baf..462b1380b2 100644
+--- a/xen/common/warning.c
++++ b/xen/common/warning.c
+@@ -33,10 +33,10 @@ void __init warning_print(void)
+         process_pending_softirqs();
+     }
+ 
+-    for ( i = 0; i < 3; i++ )
++    for ( i = 0; i < 1; i++ )
+     {
+-        printk("%u... ", 3 - i);
+-        for ( j = 0; j < 100; j++ )
++        printk("%u... ", 1 - i);
++        for ( j = 0; j < 1; j++ )
+         {
+             process_pending_softirqs();
+             mdelay(10);
+-- 
+2.25.1
+

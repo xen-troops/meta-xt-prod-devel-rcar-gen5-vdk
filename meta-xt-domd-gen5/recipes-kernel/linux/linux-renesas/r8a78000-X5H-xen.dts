@@ -1,0 +1,650 @@
+/dts-v1/;
+
+/ {
+	model = "Renesas evaluation board for R-Car X5H";
+	compatible = "arm,rtsm_ve,aemv8a", "arm,vexpress";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	interrupt-parent = <&gic>;
+
+	aliases {
+		serial0 = &scif0;
+		serial1 = &scif1;
+		serial2 = &scif3;
+		serial3 = &scif4;
+		serial4 = &hscif0;
+		serial5 = &hscif1;
+		serial6 = &hscif2;
+		serial7 = &hscif3;
+		serial8 = &pl011;
+	};
+
+	cpus {
+		#address-cells = <2>;
+		#size-cells = <0>;
+		
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		/* cpu@400 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x400>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@500 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x500>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@600 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x600>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@700 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x700>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10400 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10400>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10500 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10500>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10600 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10600>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@10700 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x10700>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20400 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20400>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20500 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20500>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20600 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20600>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@20700 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x20700>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30400 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30400>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30500 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30500>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30600 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30600>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@30700 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x30700>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};*/
+	};
+
+	memory@48000000 {
+		device_type = "memory";
+		reg = <0x00 0x48000000 0x00 0x58000000 0x04 0x80000000 0x00 0x80000000>;
+	};
+
+	chosen {
+		stdout-path = "serial8:38400n8";
+		bootargs = "console=dtuart dtuart=/uart@e5c00000 dom0_mem=256M dom0_max_vcpus=2 xsm=dummy bootscrub=0";
+		xen,dom0-bootargs = "root=/dev/ram0 console=hvc0 ignore_loglevel";
+
+		modules {
+			#address-cells = <0x02>;
+			#size-cells = <0x02>;
+
+			module@1 {
+				compatible = "xen,linux-zimage\0xen,multiboot-module";
+				reg = <0x00 0x7a000000 0x00 0x2000000>;
+			};
+
+			module@2 {
+				compatible = "xen,xsm-policy\0xen,multiboot-module";
+				reg = <0x00 0x7c000000 0x00 0x10000>;
+			};
+		};
+	};
+
+	virtio_block@c000000 {
+		compatible = "virtio,mmio";
+		reg = <0x00 0xc000000 0x00 0x10000>;
+		interrupts = <0x00 0x03 0x04>;
+		status = "okay";
+		//xen,passthrough;
+	};
+
+	virtio_block@e5800000 {
+		compatible = "virtio,mmio";
+		reg = <0x00 0xe5800000 0x00 0x10000>;
+		interrupts = <0x00 0x3be 0x04>;
+		status = "okay";
+		//xen,passthrough;
+	};
+
+	timer {
+		compatible = "arm,armv8-timer";
+		interrupts = <0x1 0xd 0xff08 0x1 0xe 0xff08 0x1 0xb 0xff08 0x1 0xa 0xff08>;
+	};
+
+	gic: interrupt-controller@38000000 {
+		compatible = "arm,gic-v3";
+		#interrupt-cells = <0x03>;
+		#address-cells = <0x02>;
+		#size-cells = <0x02>;
+		ranges;
+		interrupt-controller;
+		reg = <0x0 0x38000000 0x0 0x10000>, <0x0 0x38080000 0x0 0x4080000>, <0x0 0x0 0x0 0x2000>, <0x0 0x10000 0x0 0x2000>, <0x0 0x20000 0x0 0x2000>;
+		interrupts = <0x01 0x09 0xff04>;
+		phandle = <0x14>;
+
+		msi-controller@38040000 {
+			compatible = "arm,gic-v3-its";
+			msi-controller;
+			#msi-cells = <0x01>;
+			reg = <0x00 0x38040000 0x00 0x20000>;
+			phandle = <0x2f>;
+		};
+	};
+
+	sysreg: sysreg@e5c11000 {
+		compatible = "arm,vexpress-sysreg";
+		reg = <0x0 0xe5c11000 0x0 0x1000>;
+	};
+
+	smmu_imn: iommu@f8000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xf8000000 0x0 0x200000>;
+		interrupts = <0 107 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_gpu: iommu@f8600000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xf8600000 0x0 0x200000>;
+		interrupts = <0 109 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_hscn: iommu@f8800000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xf8800000 0x0 0x200000>;
+		interrupts = <0 103 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_vio0: iommu@f9000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xf9000000 0x0 0x800000>;
+		interrupts = <0 115 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_vio1: iommu@f9800000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xf9800000 0x0 0x800000>;
+		interrupts = <0 118 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_dsp: iommu@fa000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfa000000 0x0 0x800000>;
+		interrupts = <0 102 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_rt: iommu@fb000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfb000000 0x0 0x800000>;
+		interrupts = <0 114 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_scp: iommu@fb800000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfb800000 0x0 0x800000>;
+		interrupts = <0 120 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_ims: iommu@fc000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfc000000 0x0 0x200000>;
+		//interrupts = <0 xx 4>; //currently unknown
+		//interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_vips: iommu@fc200000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfc200000 0x0 0x200000>;
+		interrupts = <0 117 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_npu1: iommu@fc400000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfc400000 0x0 0x200000>;
+		interrupts = <0 110 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_hscs_ucie: iommu@fcc00000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfcc00000 0x0 0x200000>;
+		interrupts = <0 104 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+	
+	smmu_hscs_pcie6: iommu@fce00000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfce00000 0x0 0x200000>;
+		interrupts = <0 105 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_pere: iommu@fd000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfd000000 0x0 0x800000>;
+		interrupts = <0 53 4>; //temporary based-on current VDK version
+		//interrupts = <0 111 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_perw: iommu@fd800000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfd800000 0x0 0x800000>;
+		interrupts = <0 112 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_mp0: iommu@fe000000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfe000000 0x0 0x800000>;
+		interrupts = <0 108 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	smmu_mp1: iommu@fe800000 {
+		compatible = "arm,smmu-v3";
+		reg = <0x0 0xfe800000 0x0 0x800000>;
+		interrupts = <0 119 4>;
+		interrupt-names = "combined";
+		#iommu-cells = <1>;
+		dma-coherent;
+	};
+
+	extal_clk: extal {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		/* This value must be overridden by the board */
+		clock-frequency = <16666666>;
+	};
+	
+	extalr_clk: extalr {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		/* This value must be overridden by the board */
+		clock-frequency = <32768>;
+	};
+	
+	cpg: clock-controller@e6150000 {
+		compatible = "renesas,r8a779f0-cpg-mssr";
+		reg = <0 0xe6150000 0 0x4000>;
+		clocks = <&extal_clk>, <&extalr_clk>;
+		clock-names = "extal", "extalr";
+		#clock-cells = <2>;
+		#power-domain-cells = <0>;
+		#reset-cells = <1>;
+	};
+
+	fck: fck {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <66560000>;
+		clock-output-names = "fck";
+	};
+	
+	hfck: hfck {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <266240000>;
+		clock-output-names = "hfck";
+	};
+	
+	brg_int: brg_int {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <266240000>;
+		clock-output-names = "brg_int";
+	};
+	
+	scif_clk: scif_clk {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <24000000>;
+		clock-output-names = "scif_clk";
+	};
+	
+	scif0: serial@e6e60000 {
+		compatible = "renesas,scif-r8a779f0",
+				"renesas,rcar-gen4-scif", "renesas,scif";
+		reg = <0 0xe6e60000 0 0x40>;
+		interrupts = <&gic 249 4>;
+		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x51>, <&dmac1 0x50>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 702>;
+		//status = "disabled";
+	};
+	
+	scif1: serial@e6e68000 {
+		compatible = "renesas,scif-r8a779f0",
+				"renesas,rcar-gen4-scif", "renesas,scif";
+		reg = <0 0xe6e68000 0 0x40>;
+		interrupts = <0 250 4>;
+		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x53>, <&dmac1 0x52>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 703>;
+		//status = "disabled";
+	};
+	
+	scif3: serial@e6c50000 {
+		compatible = "renesas,scif-r8a779f0",
+				"renesas,rcar-gen4-scif", "renesas,scif";
+		reg = <0 0xe6c50000 0 0x40>;
+		interrupts = <0 252 4>;
+		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x57>, <&dmac1 0x56>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 704>;
+		//status = "disabled";
+	};
+	
+	scif4: serial@e6c40000 {
+		compatible = "renesas,scif-r8a779f0",
+				"renesas,rcar-gen4-scif", "renesas,scif";
+		reg = <0 0xe6c40000 0 0x40>;
+		interrupts = <0 253 4>;
+		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x59>, <&dmac1 0x58>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 705>;
+		//status = "disabled";
+	};
+	
+	
+	hscif0: serial@c0710000 {
+		compatible = "renesas,rcar-gen4-hscif\0renesas,hscif";
+		reg = <0x00 0xc0710000 0x00 0x60>;
+		status = "okay";
+	};
+	
+	hscif1: serial@e6550000 {
+		compatible = "renesas,hscif-r8a779f0",
+				"renesas,rcar-gen4-hscif", "renesas,hscif";
+		reg = <0 0xe6550000 0 0x60>;
+		interrupts = <0 246 4>;
+		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x33>, <&dmac1 0x32>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 515>;
+		//status = "disabled";
+	};
+	
+	hscif2: serial@e6560000 {
+		compatible = "renesas,hscif-r8a779f0",
+				"renesas,rcar-gen4-hscif", "renesas,hscif";
+		reg = <0 0xe6560000 0 0x60>;
+		interrupts = <0 247 4>;
+		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x35>, <&dmac1 0x34>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 516>;
+		//status = "disabled";
+	};
+	
+	hscif3: serial@e66a0000 {
+		compatible = "renesas,hscif-r8a779f0",
+				"renesas,rcar-gen4-hscif", "renesas,hscif";
+		reg = <0 0xe66a0000 0 0x60>;
+		interrupts = <0 248 4>;
+		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
+		//dmas = <&dmac1 0x37>, <&dmac1 0x36>;
+		//dma-names = "tx", "rx";
+		//power-domains = <&sysc 64>;
+		resets = <&cpg 517>;
+		//status = "disabled";
+	};
+
+	sysclk: sysclk {
+		compatible = "fixed-clock";
+		#clock-cells = <0x00>;
+		clock-frequency = <0x5f5e100>;
+		clock-output-names = "sysclk";
+	};
+
+	pl011: uart@e5c00000 {
+		compatible = "arm,pl011", "arm,primecell";
+		reg = <0x00 0xe5c00000 0x00 0x1000>;
+		interrupts = <0x00 0x3bf 0x04>;
+		clock-names = "uartclk", "apb_pclk";
+		clocks = <&sysclk>;
+	};
+};

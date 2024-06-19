@@ -1,0 +1,56 @@
+/dts-v1/;
+
+
+/ {
+	compatible = "arm,rtsm_ve,aemv8a", "arm,vexpress";
+	#address-cells = <0x02>;
+	#size-cells = <0x02>;
+	model = "Renesas evaluation board for R-Car X5H";
+
+	interrupt-parent = <0xfde8>;
+
+	cpus {
+		#address-cells = <0x01>;
+		#size-cells = <0x00>;
+
+		cpu-map {
+
+			cluster0 {
+
+				core0 {
+					cpu = <0x01>;
+				};
+
+				core1 {
+					cpu = <0x02>;
+				};
+			};
+		};
+
+		cpu@0 {
+			compatible = "arm,armv8";
+			reg = <0x00>;
+			device_type = "cpu";
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+			phandle = <0x01>;
+		};
+
+		cpu@100 {
+			compatible = "arm,armv8";
+			reg = <0x100>;
+			device_type = "cpu";
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+			phandle = <0x02>;
+		};
+	};
+
+	memory@48000000 {
+		device_type = "memory";
+		reg = <0x00 0x48000000 0x00 0x58000000>;
+	};
+
+	passthrough {
+	};
+};

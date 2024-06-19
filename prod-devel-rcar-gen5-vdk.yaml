@@ -1,0 +1,205 @@
+desc: "Xen-Troops development setup for Renesas RCAR gen5 hardware"
+min_ver: "0.15"
+
+variables:
+  YOCTOS_WORK_DIR: "yocto"
+  DOM0_BUILD_DIR: "build-dom0"
+  DOMD_BUILD_DIR: "build-domd"
+  XT_DOMD_DTB_NAME: "%{SOC_FAMILY}-X5H-domd.dtb"
+  XT_XEN_DTB_NAME: "%{SOC_FAMILY}-X5H-xen.dtb"
+  XT_GENERIC_DOMU_TAG: ""
+  # X5H is base on S4, and there is no public machine for X5H
+  MACHINE: "spider"
+  SOC_FAMILY: "r8a78000"
+  XT_DOMD_CONFIG_NAME: "domd-X5H.cfg"
+  XT_KERNEL_BRANCH: "v5.10.147/rcar-5.2.0.rc11_vpf.rc8"
+  XT_KERNEL_REV: "${AUTOREV}"
+common_data:
+  # Sources used by all yocto-based domains
+  sources: &COMMON_SOURCES
+    - type: git
+      url: "git://git.yoctoproject.org/poky"
+      rev: kirkstone
+    - type: git
+      url: "git://git.openembedded.org/meta-openembedded"
+      rev: kirkstone
+    - type: git
+      url: "git://git.yoctoproject.org/meta-virtualization"
+      rev: kirkstone
+    - type: git
+      url: "https://github.com/xen-troops/meta-xt-common.git"
+      rev: master
+    - type: git
+      url: <local repo full path>
+      rev: master
+
+  # Sources to be used in DomD and DomU
+  domd_domu_sources: &DOMD_DOMU_SOURCES
+    - type: git
+      url: https://github.com/renesas-rcar/meta-renesas.git
+      rev: kirkstone-dev
+    - type: git
+      url: https://github.com/xen-troops/meta-xt-rcar
+      rev: master
+
+  # Common configuration options for all yocto-based domains
+  conf: &COMMON_CONF
+    - [SSTATE_DIR, "${TOPDIR}/../../../common_data/sstate"]
+    - [DL_DIR, "${TOPDIR}/../../../common_data/downloads"]
+
+    # Skip warning about missing "virtualization" distro feature
+    - [SKIP_META_VIRT_SANITY_CHECK, "1"]
+
+    # Use hypervisor console on all guests
+    - [SERIAL_CONSOLES, "115200;hvc0"]
+
+    # Remove features that we are not using
+    - [DISTRO_FEATURES:remove, "x11 gtk gobject-introspection-data wifi nfc
+            bluetooth irda zeroconf 3g sysvinit acl alsa argp pcmcia usbgadget
+            usbhost opengl ptest multiarch wayland vulkan sysvinit pulseaudio"]
+  # Conf options for domain that are built used renesas layer
+  domd_domu_conf: &DOMD_DOMU_CONF
+    - [MACHINE, "%{MACHINE}"]
+    - [SOC_FAMILY, "%{SOC_FAMILY}"]
+    # Add systemd configuration
+    - [DISTRO_FEATURES:append, " systemd"]
+    - [VIRTUAL-RUNTIME_init_manager, "systemd"]
+    # add the static lib to SDK toolchain
+    - [SDKIMAGE_FEATURES:append, " staticdev-pkgs"]
+    # Add for gstreamer plugins ugly
+    - [LICENSE_FLAGS_ACCEPTED, "commercial"]
+    # Add Capacity Aware migration Strategy (CAS)
+    - [MACHINE_FEATURES:append, " cas"]
+    # Remove ptest to reduce the build time
+    - [DISTRO_FEATURES:remove, "ptest"]
+    # Generate ext4 image files
+    - [IMAGE_FSTYPES:append, " ext4"]
+
+components:
+  dom0:
+    build-dir: "%{YOCTOS_WORK_DIR}"
+    default: true
+    sources:
+      - *COMMON_SOURCES
+    builder:
+      type: yocto
+      work_dir: "%{DOM0_BUILD_DIR}"
+      conf:
+        - *COMMON_CONF
+        - [MACHINE, "generic-armv8-xt"]
+        - [XT_DOM_NAME, "dom0"]
+        - [XT_DOMD_CONFIG_NAME, "%{XT_DOMD_CONFIG_NAME}"]
+        - [XT_DOMD_DTB_NAME, "%{XT_DOMD_DTB_NAME}"]
+        - [XT_GUEST_INSTALL, "%{XT_GENERIC_DOMU_TAG} domd"]
+
+        # Remove unused DISTRO_FEATURES
+        - [DISTRO_FEATURES:remove, "acl alsa argp pcmcia usbgadget
+                usbhost opengl ptest multiarch wayland vulkan
+                sysvinit pulseaudio"]
+        - [IMAGE_INSTALL:remove, " qemu"]
+
+        # Disable HWDB which quite huge (around 15MB) and is not required at all
+        - [BAD_RECOMMENDATIONS:append, " udev-hwdb"]
+
+        # Enable systemd on dom0
+        - [DISTRO_FEATURES:append, " systemd"]
+        - [VIRTUAL-RUNTIME_init_manager, "systemd"]
+
+        # Do not install kernel image to rootfs to decrease initrd size
+        - ["RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base", ""]
+
+        - [PREFERRED_VERSION_xen-tools, "4.19.0+git%"]
+        - [PREFERRED_VERSION_xen, "4.19.0+git%"]
+        - [BBMASK:append, " meta-xt-common/meta-xt-domu/recipes-kernel/linux-libc-headers/"]
+
+        # Flag, which allows to override parameters on the Yocto level.
+        # E.g. amount of used RAM for driver and guest domains.
+        - [OVERRIDES:append, ":enable_virtio"]
+        # Enable related distro-feautre in order to create conditions in Yocto recipes
+        - [DISTRO_FEATURES:append, " enable_virtio"]
+        - [DISTRO_FEATURES:append, " xen vmsep"]
+
+      layers:
+        - "../meta-virtualization"
+        - "../meta-openembedded/meta-oe"
+        - "../meta-openembedded/meta-filesystems"
+        - "../meta-openembedded/meta-python"
+        - "../meta-openembedded/meta-networking"
+        - "../meta-xt-common/meta-xt-dom0"
+        - "../meta-xt-common/meta-xt-domx"
+        - "../meta-xt-common/meta-xt-control-domain"
+        - "../meta-xt-common/meta-xt-control-domain-virtio"
+        - "../meta-xt-common/meta-xt-qemu"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-dom0-gen5"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-domx-gen5"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-prod-devel-rcar-control-gen5"
+      build_target: core-image-thin-initramfs
+      external_src:
+        domd: "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/"
+      additional_deps:
+        - "%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/Image"
+      target_images:
+        - "tmp/deploy/images/generic-armv8-xt/Image"
+        - "tmp/deploy/images/generic-armv8-xt/uInitramfs"
+  domd:
+    build-dir: "%{YOCTOS_WORK_DIR}"
+    sources:
+      - *COMMON_SOURCES
+      - *DOMD_DOMU_SOURCES
+      - type: git
+        url: git://git.yoctoproject.org/meta-selinux
+        rev: kirkstone
+    builder:
+      type: yocto
+      work_dir: "%{DOMD_BUILD_DIR}"
+      conf:
+        - *COMMON_CONF
+        - *DOMD_DOMU_CONF
+        - [XT_DOM_NAME, "domd"]
+        - [XT_DEVICE_TREES, "%{XT_DOMD_DTB_NAME} %{XT_XEN_DTB_NAME}"]
+        - [XT_KERNEL_BRANCH, "%{XT_KERNEL_BRANCH}"]
+        - [XT_KERNEL_REV, "%{XT_KERNEL_REV}"]
+        - [IMAGE_INSTALL:append, " iperf3"]
+        - [PREFERRED_VERSION_xen-tools, "4.19.0+git%"]
+        - [PREFERRED_VERSION_xen, "4.19.0+git%"]
+        # Enable xen-virtio distro feature
+        - [DISTRO_FEATURES:append, " enable_virtio"]
+        # QEMU-related configuration
+        - [DISTRO_FEATURES:append, " xen vmsep"]
+        - [QEMUVERSION, "7.0%"]
+
+      build_target: rcar-image-minimal
+      layers:
+        - "../meta-virtualization"
+        - "../meta-selinux"
+        - "../meta-openembedded/meta-oe"
+        - "../meta-openembedded/meta-networking"
+        - "../meta-openembedded/meta-python"
+        - "../meta-openembedded/meta-filesystems"
+        - "../meta-renesas/meta-rcar-gateway"
+        - "../meta-xt-common/meta-xt-domx"
+        - "../meta-xt-common/meta-xt-driver-domain"
+        - "../meta-xt-common/meta-xt-security"
+        - "../meta-xt-common/meta-xt-driver-domain-virtio"
+        - "../meta-xt-common/meta-xt-qemu"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-domd-gen5"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-domx-gen5"
+        - "../meta-xt-prod-devel-rcar-gen5-vdk/meta-xt-driver-domain-gen5"
+      target_images:
+        - "tmp/deploy/images/spider/Image"
+        - "tmp/deploy/images/spider/rcar-image-minimal-X5H.ext4"
+        - "tmp/deploy/images/spider/xen-X5H.uImage"
+        - "tmp/deploy/images/spider/xenpolicy-X5H"
+        - "tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
+  boot_artifacts:
+    build-dir: "artifacts"
+    builder:
+      type: archive
+      name: "X5H-boot-artifacts.tar.bz"
+      items:
+        - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/Image"
+        - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/uInitramfs"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xen-X5H.uImage"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xenpolicy-X5H"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
+

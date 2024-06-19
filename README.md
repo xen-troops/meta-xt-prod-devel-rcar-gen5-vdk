@@ -84,7 +84,30 @@ Moulin will generate `build.ninja` file. After that run following command to
 build the target images:
 
 ```
-$ ninja dom0 virtio.img
+$ ninja boot_artifacts virtio.img
 ```
 
 This will take some time and disk space as it builds 2 separate Yocto images.
+
+# Booting
+
+After building stage output files will appear in your build directory (where
+you previously placed `prod-devel-rcar-gen5-vdk.yaml`) - `virtio.img` and
+`artifacts` directory with `X5H-boot-artifacts.tar.bz` archive.
+
+To boot them you need to have Virtualizer U-boot config (`UBoot_5_10_41.vpcfg`)
+from EPAM release (refer to "External dependencies" section of these document
+and "VDK configuration" section of EPAM release notes). This file contains
+pathes to target images and addresses that should be used for loading.
+
+To run your images, please, open `UBoot_5_10_41.vpcfg` via Virtualizer and:
+- substitute original image pathes with unpacked from `X5H-boot-artifacts.tar.bz`
+  Dom0 `Image` and `uInitramfs` are located in `yocto/build-dom0/tmp/deploy/images`
+  Xen device tree (`r8a78000-X5H-xen.dtb`), Xen image (`xen-x5h.uImage`),
+  U-boot image (`u-boot.bin`) and Xenpolicy (`xenpolicy-4.19-unstable`) are
+  located in `yocto/build-domd/tmp/deploy/images` of `X5H-boot-artifacts.tar.bz`
+  unpacked archive
+- change original `virtio.img` in `VIRTIO` sections of Images tab to `virtio.img`
+  from build folder
+
+After this you can run simulation with you own images.

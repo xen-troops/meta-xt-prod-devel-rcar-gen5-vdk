@@ -201,8 +201,8 @@ components:
       items:
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/Image"
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/uInitramfs"
-        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xen-X5H.uImage"
-        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xenpolicy-X5H"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xen-x5h.uImage"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xenpolicy-4.19-unstable"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
 
 images:

@@ -204,6 +204,7 @@ components:
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xen-x5h.uImage"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xenpolicy-4.19-unstable"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/u-boot.bin"
 
 images:
   virtio:

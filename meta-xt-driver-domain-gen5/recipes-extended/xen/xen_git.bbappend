@@ -5,6 +5,7 @@ SRC_URI:append:spider = " \
     file://early_printk_spider.cfg \
     file://disable_tee.cfg \
     file://disable_ipmmu_vmsa.cfg \
+    file://enable_ssmu_v3.cfg \
 "
 
 do_configure:append() {

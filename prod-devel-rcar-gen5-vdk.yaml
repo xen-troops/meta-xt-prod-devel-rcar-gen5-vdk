@@ -205,3 +205,9 @@ components:
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/xenpolicy-X5H"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
 
+images:
+  virtio:
+    type: ext4
+    desc: "DomD Virtio ext4 image"
+    items:
+        "rcar-image-minimal-spider.ext4": "%{YOCTOS_WORK_DIR}/build-domd/tmp/deploy/images/%{MACHINE}/rcar-image-minimal-%{MACHINE}.ext4"

@@ -470,7 +470,6 @@
 	smmu_mp1: iommu@fe800000 {
 		compatible = "arm,smmu-v3";
 		reg = <0x0 0xfe800000 0x0 0x800000>;
-		interrupts = <0 119 4>;
 		interrupt-names = "combined";
 		#iommu-cells = <1>;
 		dma-coherent;

@@ -257,7 +257,7 @@
 
 	chosen {
 		stdout-path = "serial8:38400n8";
-		bootargs = "console=dtuart dtuart=/uart@e5c00000 dom0_mem=256M dom0_max_vcpus=2 xsm=dummy bootscrub=0";
+		bootargs = "console=dtuart dtuart=/uart@e5c00000 dom0_mem=256M dom0_max_vcpus=2 xsm=flask bootscrub=0";
 		xen,dom0-bootargs = "root=/dev/ram0 console=hvc0 ignore_loglevel";
 
 		modules {

@@ -1,29 +1,23 @@
-From b9ef1b25ae520e831842f0e9eb39677c51b7fc8b Mon Sep 17 00:00:00 2001
+From 6f0fe81d2eb9c440e5851daab8d8470b41371d34 Mon Sep 17 00:00:00 2001
 From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 Date: Mon, 27 May 2024 10:18:43 +0300
-Subject: [PATCH 3/4] gen5: vdk: use only 2GB of memory instead of 12GB
+Subject: [PATCH 3/4] gen5: vdk: use only 4GB of memory instead of 12GB
 
-To improve simulation time on VDK 3.1.0, we can temporary use
-only 2GB of RAM.
+On the VDK 3.5.1 only 4GB is available.
 
 Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 ---
- arch/arm/dts/rcar-x5h-board-u-boot.dts | 15 ---------------
- 1 file changed, 15 deletions(-)
+ arch/arm/dts/rcar-x5h-board-u-boot.dts | 10 ----------
+ 1 file changed, 10 deletions(-)
 
 diff --git a/arch/arm/dts/rcar-x5h-board-u-boot.dts b/arch/arm/dts/rcar-x5h-board-u-boot.dts
-index 28ca6d336c..4c06e72446 100644
+index 28ca6d336c..a97dd03a05 100644
 --- a/arch/arm/dts/rcar-x5h-board-u-boot.dts
 +++ b/arch/arm/dts/rcar-x5h-board-u-boot.dts
-@@ -28,21 +28,6 @@
- 		/* first 128MB is reserved for secure area. */
- 		reg = <0x0 0x48000000 0x0 0x78000000>;
+@@ -33,16 +33,6 @@
+ 		device_type = "memory";
+ 		reg = <0x4 0x80000000 0x0 0x80000000>;
  	};
--
--	memory@480000000 {
--		device_type = "memory";
--		reg = <0x4 0x80000000 0x0 0x80000000>;
--	};
 -
 -	memory@800000000 {
 -		device_type = "memory";

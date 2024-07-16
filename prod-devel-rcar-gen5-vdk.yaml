@@ -12,7 +12,7 @@ variables:
   MACHINE: "spider"
   SOC_FAMILY: "r8a78000"
   XT_DOMD_CONFIG_NAME: "domd-X5H.cfg"
-  XT_KERNEL_BRANCH: "v5.10.147/rcar-5.2.0.rc11_vpf.rc8"
+  XT_KERNEL_BRANCH: "v5.10.147/rcar-5.2.0.rc11_vpf.rc8-xt"
   XT_KERNEL_REV: "${AUTOREV}"
 common_data:
   # Sources used by all yocto-based domains

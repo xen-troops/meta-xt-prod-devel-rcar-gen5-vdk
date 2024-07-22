@@ -105,6 +105,24 @@ $ ninja boot_artifacts virtio.img
 
 This will take some time and disk space as it builds 2 separate Yocto images.
 
+## Android as the guest
+
+This option is in active development and has very limited functionality.
+
+In order to build DomA you need to install Google's `repo` tool.
+Please follow the instruction to install `repo`
+https://source.android.com/docs/setup/start/requirements#repo
+
+It is possible to build Android as the guest domain DomA, providing
+`--ENABLE_ANDROID yes` option for the moulin. This will result in the
+fetching and building of the AOSP 14. Resulting product can run on VDK
+with very limited functionality as for now.
+
+Important note!
+Build of the DomA with AOSP requires 400-500 GB of the free space and
+5-10 hours of fetching and compilation, depending on your internet speed and
+workstation. It is strongly recommended to use SSD drive for the build.
+
 # Booting
 
 After building stage output files will appear in your build directory (where

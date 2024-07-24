@@ -1,0 +1,30 @@
+From 1b6d53fa7852bad903afe0d2c8262118fe262b0f Mon Sep 17 00:00:00 2001
+From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+Date: Wed, 24 Jul 2024 11:16:34 +0000
+Subject: [PATCH] console: temporary decrease polling period
+
+As delays in VDK simulation take a lot of real time,
+it's better to decrease console period temporarily and
+as a result decrease response time.
+
+Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+---
+ tools/console/daemon/io.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/console/daemon/io.c b/tools/console/daemon/io.c
+index bb739bdb8c..0a02ad3ad9 100644
+--- a/tools/console/daemon/io.c
++++ b/tools/console/daemon/io.c
+@@ -58,7 +58,7 @@
+ /* How many events are allowed in each time period */
+ #define RATE_LIMIT_ALLOWANCE 30
+ /* Duration of each time period in ms */
+-#define RATE_LIMIT_PERIOD 200
++#define RATE_LIMIT_PERIOD 5
+ 
+ extern int log_reload;
+ extern int log_guest;
+-- 
+2.25.1
+

@@ -1,3 +1,9 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+
+SRC_URI:append = " \
+    file://0001-console-temporary-decrease-polling-period.patch \
+"
+
 RDEPENDS:${PN} += " \
     util-linux-prlimit \
 "

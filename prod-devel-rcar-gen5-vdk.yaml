@@ -206,11 +206,12 @@ components:
         - "tmp/deploy/images/spider/xenpolicy-spider"
         - "tmp/deploy/images/spider/%{SOC_FAMILY}-X5H-xen.dtb"
         - "tmp/deploy/images/spider/u-boot.bin"
+
   boot_artifacts:
     build-dir: "artifacts"
     builder:
       type: archive
-      name: "X5H-boot-artifacts.tar.bz"
+      name: "X5H-boot-artifacts.tar.bz2"
       items:
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/Image"
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/generic-armv8-xt/uInitramfs"

@@ -71,7 +71,6 @@ common_data:
             usbhost opengl ptest multiarch wayland vulkan sysvinit pulseaudio"]
   # Conf options for domain that are built used renesas layer
   domd_domu_conf: &DOMD_DOMU_CONF
-    - [MACHINE, "%{DOMD_MACHINE}"]
     - [SOC_FAMILY, "%{SOC_FAMILY}"]
     # Add systemd configuration
     - [DISTRO_FEATURES:append, " systemd"]
@@ -167,6 +166,7 @@ components:
       conf:
         - *COMMON_CONF
         - *DOMD_DOMU_CONF
+        - [MACHINE, "%{DOMD_MACHINE}"]
         - [XT_DOM_NAME, "domd"]
         - [XT_DEVICE_TREES, "%{XT_DOMD_DTB_NAME} %{XT_DOMA_DTB_NAME} %{XT_XEN_DTB_NAME}"]
         - [XT_GUEST_INSTALL, "%{XT_DOMA_TAG}"]

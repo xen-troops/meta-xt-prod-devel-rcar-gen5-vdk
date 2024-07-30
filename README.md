@@ -27,7 +27,15 @@ Runtime U-2023.03-SP2 and Synopsys VDK release 3.5.1 (with changes described in
 
 # Building
 
-## Requirements
+## Build inside the docker container
+
+This option is strongly recommended due to the long list of packages that have
+to be installed on the host due to the complex nature of the product.
+In order to have a reproducible and clean environment we urge you to use the
+Docker container, provided in the `doc/` directory.
+Please see the corresponding [instruction](doc/Docker.md).
+
+## Requirements for the build without the container
 
 1. Ubuntu 18.0+ or any other Linux distribution which is supported by Poky/OE
 2. Development packages for Yocto. Refer to [Yocto
@@ -109,7 +117,8 @@ This will take some time and disk space as it builds 2 separate Yocto images.
 
 This option is in active development and has very limited functionality.
 
-In order to build DomA you need to install Google's `repo` tool.
+If you build DomA without the Docker container, you need to install
+Google's `repo` tool.
 Please follow the instruction to install `repo`
 https://source.android.com/docs/setup/start/requirements#repo
 

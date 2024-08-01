@@ -1,3 +1,3 @@
-IMAGE_INSTALL += " devmem2"
+IMAGE_INSTALL:append = " devmem2"
 
-IMAGE_INSTALL += " e2fsprogs"
+IMAGE_INSTALL:append = " e2fsprogs"

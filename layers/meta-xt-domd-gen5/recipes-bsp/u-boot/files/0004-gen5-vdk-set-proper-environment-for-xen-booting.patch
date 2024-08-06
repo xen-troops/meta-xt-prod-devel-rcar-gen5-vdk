@@ -1,4 +1,4 @@
-From 0631b8e4795eb6bddb05e93409b5626357f52fd1 Mon Sep 17 00:00:00 2001
+From 2ac0fe2b58db7f1e58a042abb950cd1f6ae7e2ca Mon Sep 17 00:00:00 2001
 From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 Date: Mon, 27 May 2024 10:22:21 +0300
 Subject: [PATCH 4/4] gen5: vdk: set proper environment for xen booting
@@ -11,7 +11,7 @@ Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
  3 files changed, 5 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm/dts/rcar-x5h-board-u-boot.dts b/arch/arm/dts/rcar-x5h-board-u-boot.dts
-index a97dd03a05..1f7c30c608 100644
+index 1c1761dc28..e27211a2ea 100644
 --- a/arch/arm/dts/rcar-x5h-board-u-boot.dts
 +++ b/arch/arm/dts/rcar-x5h-board-u-boot.dts
 @@ -19,7 +19,7 @@

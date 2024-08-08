@@ -282,8 +282,13 @@ parameters:
   ENABLE_ANDROID:
     desc: "Build Android as a guest VM"
     "no":
-      default: true
+      overrides:
+        variables:
+          # We have nothing to change.
+          # This is needed to keep yaml-parser sane.
+          XT_DOMA_TAG: ""
     "yes":
+      default: true
       overrides:
         variables:
           XT_DOMA_TAG: "doma"

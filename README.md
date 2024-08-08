@@ -25,7 +25,7 @@ Currently it is expected that user has and will run it with Synopsys Virtualizer
 Runtime U-2023.03-SP2 and Synopsys VDK release 3.5.1 (with changes described in
 "VDK configuration" section of EPAM release notes).
 
-# Building
+# How to build the product
 
 ## Build inside the docker container
 
@@ -48,8 +48,11 @@ Please see the corresponding [instruction](doc/Docker.md).
 4. Due to complex nature of this product and a lot of dependencies, it is
    strongly recommended to install this long list of packages, used on a
    different stages of the build:
+
 ```
-apt-get update && apt-get install -y apt-utils cpio python python3 python3-pip \
+apt-get update
+
+apt-get install -y apt-utils cpio python python3 python3-pip \
 python3-pexpect xz-utils debianutils iputils-ping python3-jinja2 pylint3 vim \
 locales devscripts debhelper gawk wget diffstat texinfo chrpath socat \
 libsdl1.2-dev python-crypto checkpolicy python3-git python3-github bzr pigz m4 \
@@ -58,79 +61,44 @@ curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev \
 x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils \
 xsltproc unzip bc ninja-build simg2img lz4 zstd python3-pyelftools \
 python3-crypto libncurses5 libssl-dev udev sudo expect graphviz adb aapt \
-libgtk-3-dev protobuf-compiler dosfstools python3-pygit2 && \
-apt-get install --reinstall -y ca-certificates && \
+libgtk-3-dev protobuf-compiler dosfstools python3-pygit2
+
+apt-get install --reinstall -y ca-certificates
+
 pip3 install pycryptodomex west protobuf grpcio-tools
 ```
 
-## Build yaml file
-
-Currently this project does not have dedicated repository, so recepies and build
-yaml are shared alongside with release binaries in release archieve and named
-`prod-devel-rcar-gen5-vdk.yaml`. To initiate build you need to have only this
-file in target build directory:
-
-```
-$ mkdir "your builds dir"/rcar-gen5-vdk-build/
-$ cp "unpacked release archive dir"/meta-xt-prod-devel-rcar-gen5-vdk/prod-devel-rcar-gen5-vdk.yaml "your builds dir"/rcar-gen5-vdk-build/
-```
-
-Also, due to sharing this project as archive instead of remote repository, you
-need to provide local path for it inside `prod-devel-rcar-gen5-vdk.yaml` before
-build. To do this, please find following line and substitute it with location
-from unpacked release archive:
-
-Change:
-```
-    - type: git
-      url: <local repo full path>
-      rev: master
-```
-
-To:
-
-```
-    - type: git
-      url: /"unpacked release archive dir"/meta-xt-prod-devel-rcar-gen5-vdk/
-      rev: master
-```
+Also you need to install Google's `repo` tool. Please follow the instruction
+https://source.android.com/docs/setup/start/requirements#repo
 
 ## Building
 
-After previous steps you can start building. Moulin is used to generate Ninja build
-file, just run following command in directory created in previous section:
+Currently this project does not have dedicated repository, so recepies and
+configuration yaml are provided alongside with release binaries in release
+archieve.
 
+Pay attention!
+This product builds Linux OS and Android, so the full build from scratch will
+take up to 10-15 hours, depending on your workstation and network bandwith,
+and requires about 400-500 GB of free space on the SSD drive.
+
+To build product from sources you need to put sources into separate build
+directory:
+```
+$ mkdir build_dir
+$ cp -r <unpacked release dir>/meta-xt-prod-devel-rcar-gen5-vdk build_dir
+$ cd build_dir
+```
+
+Use the `moulin` to generate `build.ninja`
 ```
 $ moulin prod-devel-rcar-gen5-vdk.yaml
 ```
 
-Moulin will generate `build.ninja` file. After that run following command to
-build the target images:
-
+Start the build:
 ```
 $ ninja boot_artifacts virtio.img
 ```
-
-This will take some time and disk space as it builds 2 separate Yocto images.
-
-## Android as the guest
-
-This option is in active development and has very limited functionality.
-
-If you build DomA without the Docker container, you need to install
-Google's `repo` tool.
-Please follow the instruction to install `repo`
-https://source.android.com/docs/setup/start/requirements#repo
-
-It is possible to build Android as the guest domain DomA, providing
-`--ENABLE_ANDROID yes` option for the moulin. This will result in the
-fetching and building of the AOSP 14. Resulting product can run on VDK
-with very limited functionality as for now.
-
-Important note!
-Build of the DomA with AOSP requires 400-500 GB of the free space and
-5-10 hours of fetching and compilation, depending on your internet speed and
-workstation. It is strongly recommended to use SSD drive for the build.
 
 # Booting
 

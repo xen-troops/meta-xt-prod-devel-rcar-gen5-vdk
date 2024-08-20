@@ -52,7 +52,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0x0 0x7ffff00>;
 		};
-		/* cpu@400 {
+		cpu@400 {
 			device_type = "cpu";
 			compatible = "arm,armv8";
 			reg = <0x0 0x400>;
@@ -247,7 +247,7 @@
 			reg = <0x0 0x30700>;
 			enable-method = "spin-table";
 			cpu-release-addr = <0x0 0x7ffff00>;
-		};*/
+		};
 	};
 
 	memory@48000000 {

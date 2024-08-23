@@ -11,7 +11,6 @@ ADDITIONAL_DEVICE_TREES = "${XT_DEVICE_TREES}"
 SRC_URI = "${RENESAS_BSP_URL};nocheckout=1;branch=${BRANCH};protocol=https"
 
 SRC_URI += " \
-    file://r8a779f0_ufs.bin \
     file://vsock.cfg \
 "
 

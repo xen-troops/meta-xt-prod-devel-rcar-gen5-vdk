@@ -10,4 +10,3 @@ SRC_URI = "\
     file://0003-gen5-vdk-add-proper-10GB-of-RAM-region.patch \
     file://0004-gen5-vdk-set-proper-environment-for-xen-booting.patch \
 "
-UBOOT_MACHINE = "rcar-x5h_board_defconfig"

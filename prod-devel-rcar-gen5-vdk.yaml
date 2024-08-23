@@ -15,8 +15,7 @@ variables:
   XT_DOMA_KERNEL_EXTRA_MODULES: ""
   XT_DOMA_SOURCE_GROUP: ""
   DOM0_MACHINE: "generic-armv8-xt"
-  # X5H is base on S4, and there is no public machine for X5H
-  DOMD_MACHINE: "spider"
+  DOMD_MACHINE: "x5h"
   SOC_FAMILY: "r8a78000"
   XT_DOMD_CONFIG_NAME: "domd-x5h.cfg"
   XT_DOMA_CONFIG_NAME: "doma-x5h.cfg"
@@ -45,8 +44,8 @@ common_data:
   # Sources to be used in DomD and DomU
   domd_domu_sources: &DOMD_DOMU_SOURCES
     - type: git
-      url: https://github.com/renesas-rcar/meta-renesas.git
-      rev: 11221be7ff3a535f17357bc8ac7e2851d0e8ff02
+      url: https://github.com/xen-troops/meta-renesas.git
+      rev: Renesas-Yocto-v7.5.0-xt-kirkstone
     - type: git
       url: https://github.com/xen-troops/meta-xt-rcar
       rev: abc6c8bae27293ca2d04c7810006df4bb984cf8f
@@ -188,7 +187,7 @@ components:
         - "../meta-openembedded/meta-networking"
         - "../meta-openembedded/meta-python"
         - "../meta-openembedded/meta-filesystems"
-        - "../meta-renesas/meta-rcar-gateway"
+        - "../meta-renesas/meta-rcar-gen5"
         - "../meta-xt-common/meta-xt-domx"
         - "../meta-xt-common/meta-xt-driver-domain"
         - "../meta-xt-common/meta-xt-security"

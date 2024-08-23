@@ -1,9 +1,9 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI:append:spider = " \
+SRC_URI:append = " \
     file://0001-gen5-vdk-workaround-decrease-boot-delay-for-Dom0.patch \
     file://enable_ioreq.cfg \
-    file://early_printk_spider.cfg \
+    file://early_printk.cfg \
     file://disable_tee.cfg \
     file://disable_ipmmu_vmsa.cfg \
     file://enable_smmu_v3.cfg \

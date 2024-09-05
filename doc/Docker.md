@@ -14,8 +14,8 @@ Create some directory for docker files
 ```
 mkdir docker
 cd docker
-cp <folder with unpacked sources>/doc/Dockerfile .
-cp <folder with unpacked sources>/doc/run_docker.sh .
+cp <cloned repo>/doc/Dockerfile .
+cp <cloned repo>/doc/run_docker.sh .
 ```
 
 Build docker image using:

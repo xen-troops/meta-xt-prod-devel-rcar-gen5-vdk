@@ -73,21 +73,17 @@ https://source.android.com/docs/setup/start/requirements#repo
 
 ## Building
 
-Currently this project does not have dedicated repository, so recepies and
-configuration yaml are provided alongside with release binaries in release
-archieve.
+This project is located inside [dedicated Gitlab repository](https://jc.gitlab.renesasworkbench.com/rcar-android/meta-xt-prod-devel-rcar-gen5-vdk)
+, which contains release tags. To be able to build, please clone it to separate directory.
 
 Pay attention!
 This product builds Linux OS and Android, so the full build from scratch will
 take up to 10-15 hours, depending on your workstation and network bandwith,
 and requires about 400-500 GB of free space on the SSD drive.
 
-To build product from sources you need to put sources into separate build
-directory:
+To build product from sources you need to go to cloned repository:
 ```
-$ mkdir build_dir
-$ cp -r <unpacked release dir>/meta-xt-prod-devel-rcar-gen5-vdk build_dir
-$ cd build_dir
+$ cd <cloned repository path>
 ```
 
 Use the `moulin` to generate `build.ninja`
@@ -103,7 +99,7 @@ $ ninja boot_artifacts virtio.img
 # Booting
 
 After building stage output files will appear in your build directory (where
-you previously placed `prod-devel-rcar-gen5-vdk.yaml`) - `virtio.img` and
+previously `prod-devel-rcar-gen5-vdk.yaml` was placed) - `virtio.img` and
 `artifacts` directory with `X5H-boot-artifacts.tar.bz` archive.
 
 To boot them you need to have Virtualizer U-boot config (`UBoot_5_10_41.vpcfg`)

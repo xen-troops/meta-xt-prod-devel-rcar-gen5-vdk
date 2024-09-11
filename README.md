@@ -93,7 +93,7 @@ $ moulin prod-devel-rcar-gen5-vdk.yaml
 
 Start the build:
 ```
-$ ninja boot_artifacts virtio.img
+$ ninja doma && ninja boot_artifacts virtio.img
 ```
 
 # Booting

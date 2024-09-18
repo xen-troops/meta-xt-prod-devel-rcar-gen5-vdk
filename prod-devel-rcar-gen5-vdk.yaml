@@ -31,25 +31,25 @@ common_data:
   sources: &COMMON_SOURCES
     - type: git
       url: "git://git.yoctoproject.org/poky"
-      rev: kirkstone
+      rev: e938b18b5342bd28eadb44ad39dbf1f5cf5be09b
     - type: git
       url: "git://git.openembedded.org/meta-openembedded"
-      rev: kirkstone
+      rev: 9a24b7679810628b594cc5a9b52f77f53d37004f
     - type: git
       url: "git://git.yoctoproject.org/meta-virtualization"
-      rev: kirkstone
+      rev: ef76369f844f8b5afea416372172824987ad4fec
     - type: git
       url: "https://github.com/xen-troops/meta-xt-common.git"
-      rev: master
+      rev: 09d7a4c5fd4ebff2f78129f6798af1f4d699b26d
 
   # Sources to be used in DomD and DomU
   domd_domu_sources: &DOMD_DOMU_SOURCES
     - type: git
       url: https://github.com/renesas-rcar/meta-renesas.git
-      rev: kirkstone-dev
+      rev: 11221be7ff3a535f17357bc8ac7e2851d0e8ff02
     - type: git
       url: https://github.com/xen-troops/meta-xt-rcar
-      rev: master
+      rev: abc6c8bae27293ca2d04c7810006df4bb984cf8f
 
   # Common configuration options for all yocto-based domains
   conf: &COMMON_CONF
@@ -155,7 +155,7 @@ components:
       - *DOMD_DOMU_SOURCES
       - type: git
         url: git://git.yoctoproject.org/meta-selinux
-        rev: kirkstone
+        rev: a401f4b2816a0b41ce8d9351542658c721935bcd
     builder:
       type: yocto
       work_dir: "%{DOMD_BUILD_DIR}"
@@ -222,7 +222,7 @@ components:
     sources:
       - type: repo
         url: https://github.com/xen-troops/android_kernel_manifest.git
-        rev: common-android14-6.1-xenvm-trout-main
+        rev: 9b9d0fbc1045ef2184427f3548446237fdd57c44
         manifest: default.xml
         depth: 1
         groups: "%{XT_DOMA_SOURCE_GROUP}"
@@ -245,7 +245,7 @@ components:
     sources:
       - type: repo
         url: https://github.com/xen-troops/android_manifest.git
-        rev: android-14-xenvm-trout-main
+        rev: 493c9a919949262095c598cbb6c5cd0258dfc58f
         manifest: default.xml
         depth: 1
         groups: "%{XT_DOMA_SOURCE_GROUP}"
@@ -309,7 +309,7 @@ parameters:
             sources:
               - type: git
                 url: https://github.com/kraj/meta-clang.git
-                rev: kirkstone
+                rev: 8bc893d735e5f779a2dcdc3992621d5ab371800d
             builder:
               layers:
                 - "../meta-clang"

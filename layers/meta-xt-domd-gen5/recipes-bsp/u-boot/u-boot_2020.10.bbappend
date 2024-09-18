@@ -1,7 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 BRANCH = "v2022.01/rcar-6.0.0.rc6_vpf.rc4"
-SRCREV = "${AUTOREV}"
+SRCREV = "4f43b7edc5495fea369b987763e664cbb1c606be"
 
 SRC_URI = "\
     git://github.com/renesas-rcar/u-boot.git;protocol=https;branch=${BRANCH} \

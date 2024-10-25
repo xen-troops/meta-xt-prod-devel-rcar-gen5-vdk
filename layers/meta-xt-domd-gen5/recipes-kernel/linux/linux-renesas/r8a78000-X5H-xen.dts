@@ -494,9 +494,9 @@
 		clock-frequency = <32768>;
 	};
 	
-	cpg: clock-controller@e6150000 {
-		compatible = "renesas,r8a779f0-cpg-mssr";
-		reg = <0 0xe6150000 0 0x4000>;
+	cpg: clock-controller@ff980000 {
+		compatible = "renesas,rcar-gen5-cpg-mssr";
+		reg = <0 0xff98000 0 0x9000>;
 		clocks = <&extal_clk>, <&extalr_clk>;
 		clock-names = "extal", "extalr";
 		#clock-cells = <2>;
@@ -517,6 +517,17 @@
 		clock-frequency = <266240000>;
 		clock-output-names = "hfck";
 	};
+
+	sysc: system-controller@e6184000 {
+		compatible = "renesas,r8a78000-sysc";
+		reg = <0 0xe6184000 0 0x4000>;
+		#power-domain-cells = <1>;
+	};
+
+	rst: reset-controller@c6490000 {
+		compatible = "renesas,r8a779f0-rst";
+		reg = <0 0xc6490000 0 0x4000>;
+	};
 	
 	brg_int: brg_int {
 		compatible = "fixed-clock";
@@ -528,113 +539,72 @@
 	scif_clk: scif_clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
-		clock-frequency = <24000000>;
+		clock-frequency = <100000000>;
 		clock-output-names = "scif_clk";
 	};
-	
-	scif0: serial@e6e60000 {
-		compatible = "renesas,scif-r8a779f0",
-				"renesas,rcar-gen4-scif", "renesas,scif";
-		reg = <0 0xe6e60000 0 0x40>;
-		interrupts = <&gic 249 4>;
-		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+
+	scif0: serial@c0700000 {
+		compatible = "renesas,scif-x5h", "renesas,rcar-gen5-scif", "renesas,scif";
+		reg = <0 0xc0700000 0 0x40>;
+		interrupts = <0 433 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x51>, <&dmac1 0x50>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 702>;
-		//status = "disabled";
 	};
-	
-	scif1: serial@e6e68000 {
-		compatible = "renesas,scif-r8a779f0",
-				"renesas,rcar-gen4-scif", "renesas,scif";
-		reg = <0 0xe6e68000 0 0x40>;
-		interrupts = <0 250 4>;
-		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+
+	scif1: serial@c0704000 {
+		compatible = "renesas,scif-x5h", "renesas,rcar-gen5-scif", "renesas,scif";
+		reg = <0 0xc0704000 0 0x40>;
+		interrupts = <0 433 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x53>, <&dmac1 0x52>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 703>;
-		//status = "disabled";
 	};
-	
-	scif3: serial@e6c50000 {
-		compatible = "renesas,scif-r8a779f0",
-				"renesas,rcar-gen4-scif", "renesas,scif";
-		reg = <0 0xe6c50000 0 0x40>;
-		interrupts = <0 252 4>;
-		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+
+	scif3: serial@c0708000 {
+		compatible = "renesas,scif-x5h", "renesas,rcar-gen5-scif", "renesas,scif";
+		reg = <0 0xc0708000 0 0x40>;
+		interrupts = <0 433 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x57>, <&dmac1 0x56>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 704>;
-		//status = "disabled";
 	};
-	
-	scif4: serial@e6c40000 {
-		compatible = "renesas,scif-r8a779f0",
-				"renesas,rcar-gen4-scif", "renesas,scif";
-		reg = <0 0xe6c40000 0 0x40>;
-		interrupts = <0 253 4>;
-		clocks = <&fck>, <&brg_int>, <&scif_clk>;
+
+	scif4: serial@c070c000 {
+		compatible = "renesas,scif-x5h", "renesas,rcar-gen5-scif", "renesas,scif";
+		reg = <0 0xc070c000 0 0x40>;
+		interrupts = <0 433 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x59>, <&dmac1 0x58>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 705>;
-		//status = "disabled";
 	};
-	
-	
+
 	hscif0: serial@c0710000 {
-		compatible = "renesas,rcar-gen4-hscif\0renesas,hscif";
-		reg = <0x00 0xc0710000 0x00 0x60>;
-		status = "okay";
-	};
-	
-	hscif1: serial@e6550000 {
-		compatible = "renesas,hscif-r8a779f0",
-				"renesas,rcar-gen4-hscif", "renesas,hscif";
-		reg = <0 0xe6550000 0 0x60>;
-		interrupts = <0 246 4>;
-		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+		compatible = "renesas,hscif-x5h", "renesas,rcar-gen5-hscif", "renesas,hscif";
+		reg = <0 0xc0710000 0 0x60>;
+		interrupts = <0 434 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x33>, <&dmac1 0x32>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 515>;
-		//status = "disabled";
 	};
-	
-	hscif2: serial@e6560000 {
-		compatible = "renesas,hscif-r8a779f0",
-				"renesas,rcar-gen4-hscif", "renesas,hscif";
-		reg = <0 0xe6560000 0 0x60>;
-		interrupts = <0 247 4>;
-		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+
+	hscif1: serial@c0714000 {
+		compatible = "renesas,hscif-x5h", "renesas,rcar-gen5-hscif", "renesas,hscif";
+		reg = <0 0xc0714000 0 0x60>;
+		interrupts = <0 434 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x35>, <&dmac1 0x34>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 516>;
-		//status = "disabled";
 	};
-	
-	hscif3: serial@e66a0000 {
-		compatible = "renesas,hscif-r8a779f0",
-				"renesas,rcar-gen4-hscif", "renesas,hscif";
-		reg = <0 0xe66a0000 0 0x60>;
-		interrupts = <0 248 4>;
-		clocks = <&hfck>, <&brg_int>, <&scif_clk>;
+
+	hscif2: serial@c0718000 {
+		compatible = "renesas,hscif-x5h", "renesas,rcar-gen5-hscif", "renesas,hscif";
+		reg = <0 0xc0718000 0 0x60>;
+		interrupts = <0 434 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
 		clock-names = "fck", "brg_int", "scif_clk";
-		//dmas = <&dmac1 0x37>, <&dmac1 0x36>;
-		//dma-names = "tx", "rx";
-		//power-domains = <&sysc 64>;
-		resets = <&cpg 517>;
-		//status = "disabled";
+	};
+
+	hscif3: serial@c071c000 {
+		compatible = "renesas,hscif-x5h", "renesas,rcar-gen5-hscif", "renesas,hscif";
+		reg = <0 0xc071c000 0 0x60>;
+		interrupts = <0 434 4>;
+		clocks = <&scif_clk>, <&scif_clk>, <&scif_clk>;
+		clock-names = "fck", "brg_int", "scif_clk";
 	};
 
 	sysclk: sysclk {

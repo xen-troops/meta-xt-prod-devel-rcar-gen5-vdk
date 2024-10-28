@@ -286,7 +286,6 @@
 		reg = <0x00 0xc000000 0x00 0x10000>;
 		interrupts = <0x00 0x03 0x04>;
 		status = "okay";
-		//xen,passthrough;
 	};
 
 	virtio_block@e5800000 {
@@ -294,7 +293,6 @@
 		reg = <0x00 0xe5800000 0x00 0x10000>;
 		interrupts = <0x00 0x3be 0x04>;
 		status = "okay";
-		//xen,passthrough;
 	};
 
 	timer {
@@ -402,8 +400,6 @@
 	smmu_ims: iommu@fc000000 {
 		compatible = "arm,smmu-v3";
 		reg = <0x0 0xfc000000 0x0 0x200000>;
-		//interrupts = <0 xx 4>; //currently unknown
-		//interrupt-names = "combined";
 		#iommu-cells = <1>;
 		dma-coherent;
 	};
@@ -448,7 +444,6 @@
 		compatible = "arm,smmu-v3";
 		reg = <0x0 0xfd000000 0x0 0x800000>;
 		interrupts = <0 53 4>; //temporary based-on current VDK version
-		//interrupts = <0 111 4>;
 		interrupt-names = "combined";
 		#iommu-cells = <1>;
 		dma-coherent;

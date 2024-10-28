@@ -270,12 +270,12 @@
 			#size-cells = <0x02>;
 
 			module@1 {
-				compatible = "xen,linux-zimage\0xen,multiboot-module";
+				compatible = "xen,linux-zimage", "xen,multiboot-module";
 				reg = <0x00 0x7a000000 0x00 0x2000000>;
 			};
 
 			module@2 {
-				compatible = "xen,xsm-policy\0xen,multiboot-module";
+				compatible = "xen,xsm-policy", "xen,multiboot-module";
 				reg = <0x00 0x7c000000 0x00 0x10000>;
 			};
 		};

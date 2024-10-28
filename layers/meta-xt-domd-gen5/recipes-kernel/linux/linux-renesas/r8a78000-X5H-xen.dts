@@ -617,8 +617,8 @@
 	pl011: uart@e5c00000 {
 		compatible = "arm,pl011", "arm,primecell";
 		reg = <0x00 0xe5c00000 0x00 0x1000>;
-		interrupts = <0x00 0x3bf 0x04>;
+		interrupts = <0 13 4>;
 		clock-names = "uartclk", "apb_pclk";
-		clocks = <&sysclk>;
+		clocks = <&sysclk>, <&sysclk>;
 	};
 };

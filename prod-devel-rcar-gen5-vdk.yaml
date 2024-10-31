@@ -1,5 +1,5 @@
 desc: "Xen-Troops development setup for Renesas RCAR gen5 hardware"
-min_ver: "0.15"
+min_ver: "0.27"
 
 variables:
   YOCTOS_WORK_DIR: "yocto"
@@ -326,6 +326,7 @@ parameters:
               boot_a:
                 gpt_type: 49A4D17F-93A3-45C1-A0DE-F50B2EBE2599 # Android boot 1
                 type: raw_image
+                resize: false
                 size: 70 MiB
                 image_path: "%{DOMA_DIR}/out/target/product/%{ANDROID_DEVICE}/boot.img"
               boot_b:
@@ -335,6 +336,7 @@ parameters:
               vendor_boot_a:
                 gpt_type: DF24E5ED-8C96-4B86-B00B-79667DC6DE11 # Android sparse 1
                 type: raw_image
+                resize: false
                 size: 70 MiB
                 image_path: "%{DOMA_DIR}/out/target/product/%{ANDROID_DEVICE}/vendor_boot.img"
               vendor_boot_b:
@@ -344,6 +346,7 @@ parameters:
               vbmeta_a:
                 gpt_type: 19A710A2-B3CA-11E4-B026-10604B889DCF # Android meta
                 type: raw_image
+                resize: false
                 size: 1 MiB
                 image_path: "%{DOMA_DIR}/out/target/product/%{ANDROID_DEVICE}/vbmeta.img"
               vbmeta_b:
@@ -353,6 +356,7 @@ parameters:
               vbmeta_system_a:
                 gpt_type: E7C06570-9FDC-11E8-8C15-0A580A200C13 # Android meta
                 type: raw_image
+                resize: false
                 size: 1 MiB
                 image_path: "%{DOMA_DIR}/out/target/product/%{ANDROID_DEVICE}/vbmeta_system.img"
               vbmeta_system_b:

@@ -4,8 +4,6 @@ RENESAS_BSP_URL = "git://github.com/xen-troops/linux.git"
 BRANCH = "${XT_KERNEL_BRANCH}"
 SRCREV = "${XT_KERNEL_REV}"
 
-LINUX_VERSION = "5.10.147"
-
 ADDITIONAL_DEVICE_TREES = "${XT_DEVICE_TREES}"
 
 SRC_URI = "${RENESAS_BSP_URL};nocheckout=1;branch=${BRANCH};protocol=https"

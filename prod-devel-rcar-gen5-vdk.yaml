@@ -19,7 +19,7 @@ variables:
   SOC_FAMILY: "r8a78000"
   XT_DOMD_CONFIG_NAME: "domd-x5h.cfg"
   XT_DOMA_CONFIG_NAME: "doma-x5h.cfg"
-  XT_KERNEL_BRANCH: "v5.10.147/rcar-5.2.0.rc11_vpf.rc11-xt"
+  XT_KERNEL_BRANCH: "v6.1.102/rcar-5.2.0.rc11_vpf.rc15-xt"
   XT_KERNEL_REV: "${AUTOREV}"
   ANDROID_KERNEL_BUILD_CONFIG: "//common-modules/xen-virtual-device:xen_virtual_device_aarch64_dist"
   ANDROID_KERNEL_DEPLOY_DIR: "out/deploy/common-modules/xen-virtual-device/xen_virtual_device_aarch64"
@@ -30,22 +30,22 @@ common_data:
   sources: &COMMON_SOURCES
     - type: git
       url: "git://git.yoctoproject.org/poky"
-      rev: e938b18b5342bd28eadb44ad39dbf1f5cf5be09b
+      rev: 1678bb9ee2a1ce476b5b153d9e79bb9813c33574 # scarthgap
     - type: git
       url: "git://git.openembedded.org/meta-openembedded"
-      rev: 9a24b7679810628b594cc5a9b52f77f53d37004f
+      rev: 1235dd4ed4a57e67683c045ad76b6a0f9e896b45 # scarthgap
     - type: git
       url: "git://git.yoctoproject.org/meta-virtualization"
-      rev: ef76369f844f8b5afea416372172824987ad4fec
+      rev: 66ee8d268db25a9f2848bda6858c284c745f549f # scarthgap
     - type: git
       url: "https://github.com/xen-troops/meta-xt-common.git"
-      rev: 09d7a4c5fd4ebff2f78129f6798af1f4d699b26d
+      rev: ed0819f68028204ec5fb4ee91a17728e7fe1d899 # master (scarthgap)
 
   # Sources to be used in DomD and DomU
   domd_domu_sources: &DOMD_DOMU_SOURCES
     - type: git
-      url: https://github.com/xen-troops/meta-renesas.git
-      rev: Renesas-Yocto-v7.5.0-xt-kirkstone
+      url: https://github.com/renesas-rcar/meta-renesas.git
+      rev: bd38d52c60fdf23455d31d42fae1c7bceec4cbb8 # scarthgap
 
   # Common configuration options for all yocto-based domains
   conf: &COMMON_CONF
@@ -114,7 +114,10 @@ components:
 
         - [PREFERRED_VERSION_xen-tools, "4.19.0+git%"]
         - [PREFERRED_VERSION_xen, "4.19.0+git%"]
+        - [DISTRO_FEATURES:append, " usrmerge"]
         - [BBMASK:append, " meta-xt-common/meta-xt-domu/recipes-kernel/linux-libc-headers/"]
+        - [BBMASK:append, " meta-xt-common/meta-xt-control-domain/recipes-guest/domu/"]
+        - [BBMASK:append, " meta-xt-common/meta-xt-control-domain-virtio/recipes-guest/domu/"]
 
         # Flag, which allows to override parameters on the Yocto level.
         # E.g. amount of used RAM for driver and guest domains.
@@ -151,7 +154,7 @@ components:
       - *DOMD_DOMU_SOURCES
       - type: git
         url: git://git.yoctoproject.org/meta-selinux
-        rev: a401f4b2816a0b41ce8d9351542658c721935bcd
+        rev: 9f5a46620a07d7b15722593a33e46a4d19392b75 # scarthgap
     builder:
       type: yocto
       work_dir: "%{DOMD_BUILD_DIR}"
@@ -170,6 +173,7 @@ components:
         - [IMAGE_INSTALL:append, " qemu-keymaps"]
         - [PREFERRED_VERSION_xen-tools, "4.19.0+git%"]
         - [PREFERRED_VERSION_xen, "4.19.0+git%"]
+        - [DISTRO_FEATURES:append, " usrmerge"]
         # Enable xen-virtio distro feature
         - [DISTRO_FEATURES:append, " enable_virtio"]
         # QEMU-related configuration
@@ -241,7 +245,7 @@ components:
     sources:
       - type: repo
         url: https://github.com/xen-troops/android_manifest.git
-        rev: 493c9a919949262095c598cbb6c5cd0258dfc58f
+        rev: 70390926edd0dc1d51a5b0d850f5ed42f41e45d8
         manifest: default.xml
         depth: 1
         groups: "%{XT_DOMA_SOURCE_GROUP}"
@@ -305,7 +309,7 @@ parameters:
             sources:
               - type: git
                 url: https://github.com/kraj/meta-clang.git
-                rev: 8bc893d735e5f779a2dcdc3992621d5ab371800d
+                rev: 9fbfa9db33131abdf3870a94f00199eb53e276e5 # scarthgap
             builder:
               layers:
                 - "../meta-clang"

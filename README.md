@@ -15,7 +15,7 @@ This is initial release, that supports running of 2 separate Xen domains - thin
 Dom0 and driver domain DomD. It is based on following projects:
 - U-Boot 2022.01
 - Dom0 Linux 5.10.41
-- DomD Linux 5.10.147
+- DomD Linux 6.1.102
 - Xen 4.19.0
 
 # External dependencies

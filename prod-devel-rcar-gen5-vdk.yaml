@@ -202,7 +202,7 @@ components:
         - "tmp/deploy/images/%{DOMD_MACHINE}/xen-%{DOMD_MACHINE}.uImage"
         - "tmp/deploy/images/%{DOMD_MACHINE}/xenpolicy-%{DOMD_MACHINE}"
         - "tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-X5H-xen.dtb"
-        - "tmp/deploy/images/%{DOMD_MACHINE}/u-boot.bin"
+        - "tmp/deploy/images/%{DOMD_MACHINE}/u-boot-%{DOMD_MACHINE}.bin"
 
   boot_artifacts:
     build-dir: "artifacts"
@@ -215,7 +215,7 @@ components:
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/xen-%{DOMD_MACHINE}.uImage"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/xenpolicy-%{DOMD_MACHINE}"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-X5H-xen.dtb"
-        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/u-boot.bin"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/u-boot-%{DOMD_MACHINE}.bin"
 
   doma_kernel:
     build-dir: "%{ANDROID_KERNEL_DIR}"

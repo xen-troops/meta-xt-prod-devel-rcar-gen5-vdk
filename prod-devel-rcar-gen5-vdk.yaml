@@ -7,8 +7,8 @@ variables:
   DOMD_BUILD_DIR: "build-domd"
   ANDROID_KERNEL_DIR: "android_kernel"
   DOMA_DIR: "android"
-  XT_DOMD_DTB_NAME: "%{SOC_FAMILY}-X5H-domd.dtb"
-  XT_XEN_DTB_NAME: "%{SOC_FAMILY}-X5H-xen.dtb"
+  XT_DOMD_DTB_NAME: "%{SOC_FAMILY}-%{DOMD_MACHINE}-domd.dtb"
+  XT_XEN_DTB_NAME: "%{SOC_FAMILY}-%{DOMD_MACHINE}-xen.dtb"
   XT_DOMA_DTB_NAME: ""
   XT_GENERIC_DOMU_TAG: ""
   XT_DOMA_TAG: ""
@@ -201,20 +201,20 @@ components:
         - "tmp/deploy/images/%{DOMD_MACHINE}/rcar-image-minimal-%{DOMD_MACHINE}.ext4"
         - "tmp/deploy/images/%{DOMD_MACHINE}/xen-%{DOMD_MACHINE}.uImage"
         - "tmp/deploy/images/%{DOMD_MACHINE}/xenpolicy-%{DOMD_MACHINE}"
-        - "tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-X5H-xen.dtb"
+        - "tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-%{DOMD_MACHINE}-xen.dtb"
         - "tmp/deploy/images/%{DOMD_MACHINE}/u-boot-%{DOMD_MACHINE}.bin"
 
   boot_artifacts:
     build-dir: "artifacts"
     builder:
       type: archive
-      name: "X5H-boot-artifacts.tar.bz2"
+      name: "%{DOMD_MACHINE}-boot-artifacts.tar.bz2"
       items:
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/%{DOM0_MACHINE}/Image"
         - "%{YOCTOS_WORK_DIR}/%{DOM0_BUILD_DIR}/tmp/deploy/images/%{DOM0_MACHINE}/uInitramfs"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/xen-%{DOMD_MACHINE}.uImage"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/xenpolicy-%{DOMD_MACHINE}"
-        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-X5H-xen.dtb"
+        - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{SOC_FAMILY}-%{DOMD_MACHINE}-xen.dtb"
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/u-boot-%{DOMD_MACHINE}.bin"
 
   doma_kernel:

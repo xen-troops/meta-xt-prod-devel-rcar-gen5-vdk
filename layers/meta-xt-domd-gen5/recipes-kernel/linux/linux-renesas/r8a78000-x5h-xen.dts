@@ -499,6 +499,24 @@
 		#reset-cells = <1>;
 	};
 
+	/* pfc_gen5.dts.txt */
+	pfc: pin-controller@c0400000 {
+		compatible = "renesas,pfc-r8a78000";
+		reg = <0 0xc1080000 0 0x104>,
+			  <0 0xc1080800 0 0x104>,
+			  <0 0xc1081000 0 0x104>,
+			  <0 0xc0800000 0 0x104>,
+			  <0 0xc0800800 0 0x104>,
+			  <0 0xc0400000 0 0x104>,
+			  <0 0xc0400800 0 0x104>,
+			  <0 0xc0401000 0 0x104>,
+			  <0 0xc0401800 0 0x104>,
+			  <0 0xc9b00000 0 0x104>,
+			  <0 0xc9b00800 0 0x104>;
+		xen,passthrough;
+	};
+	/* pfc_gen5.dts.txt end */
+
 	fck: fck {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -523,6 +541,472 @@
 		compatible = "renesas,r8a779f0-rst";
 		reg = <0 0xc6490000 0 0x4000>;
 	};
+
+	/* display_gen5.dts.txt */
+	dummy_clk: dummy_clk {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		xen,passthrough;
+	};
+
+	vcon_dclk: vcon_dclk {
+		compatible = "fixed-clock";
+		clock-frequency = <600000000>;
+		#clock-cells = <0>;
+		xen,passthrough;
+	};
+
+	fcpvd0: fcp@c5010000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5010000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0x80000>;
+		xen,passthrough;
+	};
+
+	fcpvd1: fcp@c5011000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5011000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0x90000>;
+		xen,passthrough;
+	};
+
+	fcpvd2: fcp@c5012000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5012000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0xA0000>;
+		xen,passthrough;
+	};
+
+	fcpvd3: fcp@c5013000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5013000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0xB0000>;
+		xen,passthrough;
+	};
+
+	fcpvd4: fcp@c5014000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5014000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio1 0x80000>;
+		xen,passthrough;
+	};
+
+	fcpvd5: fcp@c5015000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5015000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio1 0x90000>;
+		xen,passthrough;
+	};
+
+	fcpvd6: fcp@c5016000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5016000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio1 0xA0000>;
+		xen,passthrough;
+	};
+
+	fcpvd7: fcp@c5017000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5017000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio1 0xB0000>;
+		xen,passthrough;
+	};
+
+	fcpvd8: fcp@c5018000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5018000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0xC0000>;
+		xen,passthrough;
+	};
+
+	fcpvd9: fcp@c5019000 {
+		compatible = "renesas,fcpv";
+		reg = <0 0xc5019000 0 0x200>;
+		clocks = <&dummy_clk>;
+		iommus = <&smmu_vio0 0xD0000>;
+		xen,passthrough;
+	};
+
+	vspd0: vsp@c4800000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4800000 0 0x8000>;
+		interrupts = <0 623 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd0>;
+		xen,passthrough;
+	};
+
+	vspd1: vsp@c4808000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4808000 0 0x8000>;
+		interrupts = <0 624 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd1>;
+		xen,passthrough;
+	};
+
+	vspd2: vsp@c4810000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4810000 0 0x8000>;
+		interrupts = <0 625 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd2>;
+		xen,passthrough;
+	};
+
+	vspd3: vsp@c4818000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4818000 0 0x8000>;
+		interrupts = <0 626 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd3>;
+		xen,passthrough;
+	};
+
+	vspd4: vsp@c4820000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4820000 0 0x8000>;
+		interrupts = <0 627 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd4>;
+		xen,passthrough;
+	};
+
+	vspd5: vsp@c4828000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4828000 0 0x8000>;
+		interrupts = <0 628 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd5>;
+		xen,passthrough;
+	};
+
+	vspd6: vsp@c4830000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4830000 0 0x8000>;
+		interrupts = <0 629 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd6>;
+		xen,passthrough;
+	};
+
+	vspd7: vsp@c4838000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4838000 0 0x8000>;
+		interrupts = <0 630 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd7>;
+		xen,passthrough;
+	};
+
+	vspd8: vsp@c4840000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4840000 0 0x8000>;
+		interrupts = <0 631 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd8>;
+		xen,passthrough;
+	};
+
+	vspd9: vsp@c4848000 {
+		compatible = "renesas,vsp2";
+		reg = <0 0xc4848000 0 0x8000>;
+		interrupts = <0 632 4>;
+		clocks = <&dummy_clk>;
+		renesas,fcp = <&fcpvd9>;
+		xen,passthrough;
+	};
+
+	dp-con0 {
+		compatible = "dp-connector";
+		xen,passthrough;
+		port {
+			dp_con0_out: endpoint {
+				remote-endpoint = <&rcar_dw_dp0_out>;
+			};
+		};
+	};
+
+	dp-con1 {
+		compatible = "dp-connector";
+		xen,passthrough;
+		port {
+			dp_con1_out: endpoint {
+				remote-endpoint = <&rcar_dw_dp1_out>;
+			};
+		};
+	};
+
+	dp-con2 {
+		compatible = "dp-connector";
+		xen,passthrough;
+		port {
+			dp_con2_out: endpoint {
+				remote-endpoint = <&rcar_dw_dp2_out>;
+			};
+		};
+	};
+
+	dp0: dp@c5400000 {
+		compatible = "renesas,r8a78000-dw-dp-dummy";
+		channels = <4>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				dw_dp00_in: endpoint {
+					remote-endpoint = <&vcon_out_dp00>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				dw_dp01_in: endpoint {
+					remote-endpoint = <&vcon_out_dp01>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				dw_dp02_in: endpoint {
+					remote-endpoint = <&vcon_out_dp02>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				dw_dp03_in: endpoint {
+					remote-endpoint = <&vcon_out_dp03>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				rcar_dw_dp0_out: endpoint {
+					remote-endpoint = <&dp_con0_out>;
+				};
+			};
+		};
+	};
+
+	dp1: dp@c5500000 {
+		compatible = "renesas,r8a78000-dw-dp-dummy";
+		channels = <4>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				dw_dp10_in: endpoint {
+					remote-endpoint = <&vcon_out_dp10>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				dw_dp11_in: endpoint {
+					remote-endpoint = <&vcon_out_dp11>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				dw_dp12_in: endpoint {
+					remote-endpoint = <&vcon_out_dp12>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				dw_dp13_in: endpoint {
+					remote-endpoint = <&vcon_out_dp13>;
+				};
+			};
+
+			port@4 {
+				reg = <4>;
+				rcar_dw_dp1_out: endpoint {
+					remote-endpoint = <&dp_con1_out>;
+				};
+			};
+		};
+	};
+
+	dp2: dp@c5600000 {
+		compatible = "renesas,r8a78000-dw-dp-dummy";
+		channels = <2>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				dw_dp20_in: endpoint {
+					remote-endpoint = <&vcon_out_dp20>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				dw_dp21_in: endpoint {
+					remote-endpoint = <&vcon_out_dp21>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				rcar_dw_dp2_out: endpoint {
+					remote-endpoint = <&dp_con2_out>;
+				};
+			};
+		};
+	};
+
+	vcon_group0: vcon@c5020000 {
+		compatible = "renesas,r8a78000-vcon";
+		reg = <0 0xc5020000 0 0x1000>,
+			<0 0xc5021000 0 0x1000>,
+			<0 0xc5022000 0 0x1000>,
+			<0 0xc5023000 0 0x1000>;
+		interrupts = <0 665 4>, <0 666 4>, <0 667 4>, <0 668 4>;
+		interrupt-names = "ch0", "ch1", "ch2", "ch3";
+		clocks = <&vcon_dclk>, <&vcon_dclk>, <&vcon_dclk>, <&vcon_dclk>;
+		clock-names = "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+		channels = <4>;
+		renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd3 0>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+					reg = <0>;
+					vcon_out_dp00: endpoint {
+							remote-endpoint = <&dw_dp00_in>;
+					};
+			};
+			port@1 {
+					reg = <1>;
+					vcon_out_dp01: endpoint {
+							remote-endpoint = <&dw_dp01_in>;
+					};
+			};
+
+			port@2 {
+				reg = <2>;
+				vcon_out_dp02: endpoint {
+					remote-endpoint = <&dw_dp02_in>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				vcon_out_dp03: endpoint {
+					remote-endpoint = <&dw_dp03_in>;
+				};
+			};
+		};
+	};
+
+	vcon_group1: vcon@c5024000 {
+		compatible = "renesas,r8a78000-vcon";
+		reg = <0 0xc5024000 0 0x1000>,
+			<0 0xc5025000 0 0x1000>,
+			<0 0xc5026000 0 0x1000>,
+			<0 0xc5027000 0 0x1000>;
+		interrupts = <0 669 4>, <0 670 4>, <0 671 4>, <0 672 4>;
+		interrupt-names = "ch0", "ch1", "ch2", "ch3";
+		clocks = <&vcon_dclk>, <&vcon_dclk>, <&vcon_dclk>, <&vcon_dclk>;
+		clock-names = "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+		channels = <4>;
+		renesas,vsps = <&vspd4 0>, <&vspd5 0>, <&vspd6 0>, <&vspd7 0>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				vcon_out_dp10: endpoint {
+						remote-endpoint = <&dw_dp10_in>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				vcon_out_dp11: endpoint {
+						remote-endpoint = <&dw_dp11_in>;
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+				vcon_out_dp12: endpoint {
+						remote-endpoint = <&dw_dp12_in>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+				vcon_out_dp13: endpoint {
+					remote-endpoint = <&dw_dp13_in>;
+				};
+			};
+		};
+	};
+
+	vcon_group2: vcon@c5028000 {
+		compatible = "renesas,r8a78000-vcon";
+		reg = <0 0xc5028000 0 0x1000>,
+			  <0 0xc5029000 0 0x1000>;
+		interrupts = <0 673 4>, <0 674 4>;
+		interrupt-names = "ch0", "ch1";
+		clocks = <&vcon_dclk>, <&vcon_dclk>;
+		clock-names = "dclkin.0", "dclkin.1";
+		channels = <2>;
+		renesas,vsps = <&vspd8 0>, <&vspd9 0>;
+		xen,passthrough;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				vcon_out_dp20: endpoint {
+						remote-endpoint = <&dw_dp20_in>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				vcon_out_dp21: endpoint {
+						remote-endpoint = <&dw_dp21_in>;
+				};
+			};
+		};
+	};
+	/* display_gen5.dts.txt end */
 	
 	brg_int: brg_int {
 		compatible = "fixed-clock";

@@ -11,11 +11,12 @@ as Moulin-based project files provide correct entries in local.conf
 
 # Status
 
-This is initial release, that supports running of 2 separate Xen domains - thin
-Dom0 and driver domain DomD. It is based on following projects:
+This VDK release, that supports running of 3 separate Xen domains - thin
+Dom0, driver domain DomD and DomU. It is based on following projects:
 - U-Boot 2022.01
 - Dom0 Linux 5.10.41
 - DomD Linux 6.1.102
+- DomU Linux 6.1.102
 - Xen 4.19.0
 
 # External dependencies
@@ -68,18 +69,15 @@ apt-get install --reinstall -y ca-certificates
 pip3 install pycryptodomex west protobuf grpcio-tools
 ```
 
-Also you need to install Google's `repo` tool. Please follow the instruction
-https://source.android.com/docs/setup/start/requirements#repo
-
 ## Building
 
 This project is located inside [dedicated Gitlab repository](https://jc.gitlab.renesasworkbench.com/rcar-android/meta-xt-prod-devel-rcar-gen5-vdk)
 , which contains release tags. To be able to build, please clone it to separate directory.
 
 Pay attention!
-This product builds Linux OS and Android, so the full build from scratch will
-take up to 10-15 hours, depending on your workstation and network bandwith,
-and requires about 400-500 GB of free space on the SSD drive.
+This product builds several Linux OS, so the full build from scratch will
+take up to 10 hours, depending on your workstation and network bandwith,
+and requires about 300 GB of free space on the SSD drive.
 
 To build product from sources you need to go to cloned repository:
 ```
@@ -93,7 +91,7 @@ $ moulin prod-devel-rcar-gen5-vdk.yaml
 
 Start the build:
 ```
-$ ninja doma && ninja boot_artifacts virtio.img
+$ ninja && ninja boot_artifacts virtio.img
 ```
 
 # Booting

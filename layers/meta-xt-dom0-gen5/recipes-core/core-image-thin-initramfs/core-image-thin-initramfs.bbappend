@@ -11,3 +11,4 @@ generate_uboot_image() {
 IMAGE_POSTPROCESS_COMMAND += " generate_uboot_image; "
 
 IMAGE_ROOTFS_SIZE = "65535"
+INITRAMFS_MAXSIZE = "168824"

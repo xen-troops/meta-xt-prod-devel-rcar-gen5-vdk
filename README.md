@@ -91,13 +91,13 @@ $ moulin prod-devel-rcar-gen5-vdk.yaml
 
 Start the build:
 ```
-$ ninja && ninja boot_artifacts virtio.img
+$ ninja && ninja boot_artifacts mmc_flash.img
 ```
 
 # Booting
 
 After building stage output files will appear in your build directory (where
-previously `prod-devel-rcar-gen5-vdk.yaml` was placed) - `virtio.img` and
+previously `prod-devel-rcar-gen5-vdk.yaml` was placed) - `mmc_flash.img` and
 `artifacts` directory with `X5H-boot-artifacts.tar.bz` archive.
 
 To boot them you need to have Virtualizer U-boot config (`UBoot_5_10_41.vpcfg`)
@@ -112,7 +112,9 @@ To run your images, please, open `UBoot_5_10_41.vpcfg` via Virtualizer and:
   U-boot image (`u-boot.bin`) and Xenpolicy (`xenpolicy-4.19-unstable`) are
   located in `yocto/build-domd/tmp/deploy/images` of `X5H-boot-artifacts.tar.bz`
   unpacked archive
-- change original `virtio.img` in `VIRTIO` sections of Images tab to `virtio.img`
-  from build folder
+- change simulation parameter `FlashMemFileName` from default
+  `MMC_FLASHMEM0.dat` to path to prepared `mmc_flash.img` from the build folder
+  (for details please refer to Table 2-2 of `IP_MMCorSDFlashCard.pdf` from VDK
+  release documentation).
 
 After this you can run simulation with you own images.

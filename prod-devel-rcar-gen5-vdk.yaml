@@ -255,6 +255,14 @@ images:
     desc: "DomD Virtio ext4 image"
     items:
         "%{BUILD_TARGET_DOMD}-%{DOMD_MACHINE}.ext4": "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{BUILD_TARGET_DOMD}-%{DOMD_MACHINE}.ext4"
+  mmc_flash:
+    type: gpt
+    desc: "Virtualizer eMMC image for DomD/DomU rootfs"
+    partitions:
+      domd_rootfs:
+        gpt_type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE # Linux aarch64 root
+        type: raw_image
+        image_path: "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{BUILD_TARGET_DOMD}-%{DOMD_MACHINE}.ext4"
 
 parameters:
   ENABLE_DOMU:
@@ -283,4 +291,10 @@ parameters:
           virtio:
             items:
               "domu_rootfs.ext4": "%{YOCTOS_WORK_DIR}/%{DOMU_BUILD_DIR}/tmp/deploy/images/%{DOMU_MACHINE}/%{BUILD_TARGET_DOMU}-%{DOMU_MACHINE}.ext4"
+          mmc_flash:
+            partitions:
+              domu_rootfs:
+                gpt_type: B921B045-1DF0-41C3-AF44-4C6F280D3FAE # Linux aarch64 root
+                type: raw_image
+                image_path: "%{YOCTOS_WORK_DIR}/%{DOMU_BUILD_DIR}/tmp/deploy/images/%{DOMU_MACHINE}/%{BUILD_TARGET_DOMU}-%{DOMU_MACHINE}.ext4"
 

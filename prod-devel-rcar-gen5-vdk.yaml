@@ -250,11 +250,6 @@ components:
         - "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/u-boot-%{DOMD_MACHINE}.bin"
 
 images:
-  virtio:
-    type: ext4
-    desc: "DomD Virtio ext4 image"
-    items:
-        "%{BUILD_TARGET_DOMD}-%{DOMD_MACHINE}.ext4": "%{YOCTOS_WORK_DIR}/%{DOMD_BUILD_DIR}/tmp/deploy/images/%{DOMD_MACHINE}/%{BUILD_TARGET_DOMD}-%{DOMD_MACHINE}.ext4"
   mmc_flash:
     type: gpt
     desc: "Virtualizer eMMC image for DomD/DomU rootfs"
@@ -288,9 +283,6 @@ parameters:
               external_src:
                 domu: "%{YOCTOS_WORK_DIR}/%{DOMU_BUILD_DIR}/tmp/deploy/images/%{DOMU_MACHINE}/"
         images:
-          virtio:
-            items:
-              "domu_rootfs.ext4": "%{YOCTOS_WORK_DIR}/%{DOMU_BUILD_DIR}/tmp/deploy/images/%{DOMU_MACHINE}/%{BUILD_TARGET_DOMU}-%{DOMU_MACHINE}.ext4"
           mmc_flash:
             partitions:
               domu_rootfs:

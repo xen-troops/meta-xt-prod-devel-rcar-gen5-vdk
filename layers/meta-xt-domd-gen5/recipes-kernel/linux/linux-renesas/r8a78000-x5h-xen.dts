@@ -1147,4 +1147,312 @@
 		iommus = <&smmu_pere 0x20000>;
 		xen,passthrough;
 	};
+
+	rsw_clk: rsw_clk {
+		compatible = "fixed-clock";
+		clock-frequency = <320000000>;
+		#clock-cells = <0>;
+		xen,passthrough;
+	};
+
+	ethernet@c9b80000 {
+		compatible = "renesas,r8a78000-ether-switch",
+					"renesas,etherswitch";
+		reg =	<0 0xc9b80000 0 0x3ffff>,
+			<0 0xc9c89000 0 0x7ff>,
+			<0 0xc9c50000 0 0x3ff>;
+		iommus = <&smmu_hscn 0x0>;
+		reg-names = "secure_base", "gptp", "xpsc";
+		interrupts = <0 799 4>, <0 800 4>,
+			   <0 801 4>, <0 802 4>,
+			   <0 803 4>, <0 804 4>,
+			   <0 805 4>, <0 806 4>,
+			   <0 807 4>, <0 808 4>,
+			   <0 809 4>, <0 810 4>,
+			   <0 811 4>, <0 812 4>,
+			   <0 813 4>, <0 814 4>,
+			   <0 815 4>, <0 816 4>,
+			   <0 817 4>, <0 818 4>,
+			   <0 826 4>, <0 820 4>,
+			   <0 821 4>, <0 822 4>,
+			   <0 823 4>, <0 824 4>,
+			   <0 825 4>, <0 826 4>, // gwca1_gwdis 825
+			   <0 827 4>, <0 828 4>,
+			   <0 829 4>, <0 830 4>,
+			   <0 831 4>, <0 832 4>,
+			   <0 833 4>, <0 834 4>,
+			   <0 835 4>, <0 836 4>,
+			   <0 837 4>, <0 838 4>,
+			   <0 839 4>, <0 840 4>,
+			   <0 841 4>, <0 842 4>,
+			   <0 843 4>, <0 844 4>,
+			   <0 845 4>, <0 846 4>,
+			   <0 847 4>, <0 848 4>,
+			   <0 849 4>, <0 850 4>,
+			   <0 851 4>, <0 852 4>,
+			   <0 853 4>, <0 854 4>,
+			   <0 855 4>, <0 856 4>,
+			   <0 857 4>, <0 858 4>,
+			   <0 859 4>, <0 860 4>,
+			   <0 861 4>, <0 862 4>,
+			   <0 863 4>, <0 864 4>,
+			   <0 865 4>, <0 866 4>,
+			   <0 867 4>, <0 868 4>,
+			   <0 869 4>, <0 870 4>,
+			   <0 871 4>, <0 872 4>,
+			   <0 873 4>, <0 874 4>,
+			   <0 875 4>, <0 876 4>,
+			   <0 877 4>, <0 878 4>,
+			   <0 879 4>, <0 880 4>,
+			   <0 881 4>, <0 882 4>,
+			   <0 883 4>, <0 884 4>,
+			   <0 885 4>, <0 886 4>,
+			   <0 887 4>, <0 888 4>,
+			   <0 889 4>, <0 890 4>,
+			   <0 891 4>, <0 892 4>,
+			   <0 893 4>;
+		interrupt-names = "race_wrap_mfwd_int", "race_wrap_race_int",
+			"race_wrap_coma_int", "race_wrap_gwca0_int",
+			"race_wrap_gwca1_int", "race_wrap_etha0_int",
+			"race_wrap_etha1_int", "race_wrap_etha2_int",
+			"race_wrap_etha3_int", "race_wrap_etha4_int",
+			"race_wrap_etha5_int", "race_wrap_etha6_int",
+			"race_wrap_etha7_int", "race_wrap_etha8_int",
+			"race_wrap_etha9_int", "race_wrap_etha10_int",
+			"race_wrap_etha11_int", "race_wrap_etha12_int",
+			"race_wrap_gwca0_gwdis_int0", "race_wrap_gwca0_gwdis_int1",
+			"race_wrap_gwca0_gwdis_int2", "race_wrap_gwca0_gwdis_int3",
+			"race_wrap_gwca0_gwdis_int4", "race_wrap_gwca0_gwdis_int5",
+			"race_wrap_gwca0_gwdis_int6", "race_wrap_gwca0_gwdis_int7",
+			"gwca1_gwdis0", "gwca1_gwdis1", /// 825
+			"gwca1_gwdis2", "gwca1_gwdis3",
+			"gwca1_gwdis4", "gwca1_gwdis5",
+			"gwca1_gwdis6", "gwca1_gwdis7",
+			"race_wrap_gwca0_gwtsdis_int0", "race_wrap_gwca0_gwtsdis_int1",
+			"race_wrap_gwca1_gwtsdis_int0", "race_wrap_gwca1_gwtsdis_int1",
+			"race_wrap_gptp_int", "tes0_status_int",
+			"tes0_tx_int", "tes0_rx_int",
+			"tes0_ts_int", "tes0_error_int",
+			"tes1_status_int", "tes1_tx_int",
+			"tes1_rx_int", "tes1_ts_int",
+			"tes1_error_int", "tes2_status_int",
+			"tes2_tx_int", "tes2_rx_int",
+			"tes2_ts_int", "tes2_error_int",
+			"tes3_status_int", "tes3_tx_int",
+			"tes3_rx_int", "tes3_ts_int",
+			"tes3_error_int", "tes4_status_int",
+			"tes4_tx_int", "tes4_rx_int",
+			"tes4_ts_int", "tes4_error_int",
+			"tes5_status_int", "tes5_tx_int",
+			"tes5_rx_int", "tes5_ts_int",
+			"tes5_error_int", "tes6_status_int",
+			"tes6_tx_int", "tes6_rx_int",
+			"tes6_ts_int", "tes6_error_int",
+			"tes7_status_int", "tes7_tx_int",
+			"tes7_rx_int", "tes7_ts_int",
+			"tes7_error_int", "tes0_gptp_int",
+			"tes1_gptp_int", "tes2_gptp_int",
+			"tes3_gptp_int", "tes4_gptp_int",
+			"tes5_gptp_int", "tes6_gptp_int",
+			"tes7_gptp_int", "race_wrap_msc0_error_int",
+			"race_wrap_msc1_error_int", "race_wrap_msc2_error_int",
+			"race_wrap_msc3_error_int", "race_wrap_msc4_error_int",
+			"race_wrap_msc5_error_int", "race_wrap_msc6_error_int",
+			"race_wrap_msc7_error_int";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		clocks = <&rsw_clk>, <&rsw_clk>;
+		clock-names = "rsw2", "eth-phy";
+		vpf_mode;
+		status = "okay";
+		xen,passthrough;
+
+		ethernet-ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				phy-handle = <&u101>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u101: ethernet-phy@0 {
+						reg = <0>;
+					};
+				};
+			};
+			port@1 {
+				reg = <1>;
+				phy-handle = <&u102>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u102: ethernet-phy@1 {
+						reg = <1>;
+					};
+				};
+			};
+			port@2 {
+				reg = <2>;
+				phy-handle = <&u103>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u103: ethernet-phy@2 {
+						reg = <2>;
+					};
+				};
+			};
+			port@3 {
+				reg = <3>;
+				phy-handle = <&u104>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u104: ethernet-phy@3 {
+						reg = <3>;
+					};
+				};
+			};
+			port@4 {
+				reg = <4>;
+				phy-handle = <&u105>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u105: ethernet-phy@4 {
+						reg = <4>;
+					};
+				};
+			};
+			port@5 {
+				reg = <5>;
+				phy-handle = <&u106>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u106: ethernet-phy@5 {
+						reg = <5>;
+					};
+				};
+			};
+			port@6 {
+				reg = <6>;
+				phy-handle = <&u107>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u107: ethernet-phy@6 {
+						reg = <6>;
+					};
+				};
+			};
+			port@7 {
+				reg = <7>;
+				phy-handle = <&u108>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u108: ethernet-phy@7 {
+						reg = <7>;
+					};
+				};
+			};
+			port@8 {
+				reg = <8>;
+				phy-handle = <&u109>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u109: ethernet-phy@8 {
+						reg = <8>;
+					};
+				};
+			};
+			port@9 {
+				reg = <9>;
+				phy-handle = <&u110>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u110: ethernet-phy@9 {
+						reg = <9>;
+					};
+				};
+			};
+			port@10 {
+				reg = <10>;
+				phy-handle = <&u111>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u111: ethernet-phy@10 {
+						reg = <10>;
+					};
+				};
+			};
+			port@11 {
+				reg = <11>;
+				phy-handle = <&u112>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u112: ethernet-phy@11 {
+						reg = <11>;
+					};
+				};
+			};
+			port@12 {
+				reg = <12>;
+				phy-handle = <&u113>;
+				phy-mode = "sgmii";
+
+				mdio {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					u113: ethernet-phy@12 {
+						reg = <12>;
+					};
+				};
+			};
+		};
+	};
 };

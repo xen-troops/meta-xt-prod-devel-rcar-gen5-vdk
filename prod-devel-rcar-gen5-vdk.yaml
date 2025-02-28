@@ -17,7 +17,7 @@ variables:
   SOC_FAMILY: "r8a78000"
   XT_DOMD_CONFIG_NAME: "domd-x5h.cfg"
   XT_DOMU_CONFIG_NAME: "domu-x5h.cfg"
-  XT_KERNEL_BRANCH: "v6.1.102/rcar-5.2.0.rc11_vpf.rc15-xt"
+  XT_KERNEL_BRANCH: "v6.1.102/rcar-5.2.0.rc11_vpf.rc16-xt"
   XT_KERNEL_REV: "${AUTOREV}"
 common_data:
   # Sources used by all yocto-based domains

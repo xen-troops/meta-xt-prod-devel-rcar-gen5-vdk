@@ -1,0 +1,22 @@
+/ {
+	chosen {
+		stdout-path = "serial8:38400n8";
+		bootargs = "console=dtuart dtuart=/uart@e5c00000 dom0_mem=512M dom0_max_vcpus=2 xsm=flask flask=permissive bootscrub=0";
+		xen,dom0-bootargs = "root=/dev/ram0 console=hvc0 ignore_loglevel";
+
+		modules {
+			#address-cells = <0x02>;
+			#size-cells = <0x02>;
+
+			module@1 {
+				compatible = "xen,linux-zimage", "xen,multiboot-module";
+				reg = <0x00 0x7a000000 0x00 0x2000000>;
+			};
+
+			module@2 {
+				compatible = "xen,xsm-policy", "xen,multiboot-module";
+				reg = <0x00 0x7c000000 0x00 0x10000>;
+			};
+		};
+	};
+};

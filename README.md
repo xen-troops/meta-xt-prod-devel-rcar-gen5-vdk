@@ -14,7 +14,7 @@ as Moulin-based project files provide correct entries in local.conf
 This VDK release, that supports running of 3 separate Xen domains - thin
 Dom0, driver domain DomD and DomU. It is based on following projects:
 - U-Boot 2022.01
-- Dom0 Linux 5.10.41
+- Dom0 Linux 6.1.102
 - DomD Linux 6.1.102
 - DomU Linux 6.1.102
 - Xen 4.19.0
@@ -23,7 +23,7 @@ Dom0, driver domain DomD and DomU. It is based on following projects:
 
 This product is based on Synopsys VDK releases and Synopsys Virtualizer software.
 Currently it is expected that user has and will run it with Synopsys Virtualizer
-Runtime U-2023.03-SP2 and Synopsys VDK release 3.12.0 (with changes described in
+Runtime U-2023.03-SP2 and Synopsys VDK release 4.1.1 (with changes described in
 "VDK configuration" section of EPAM release notes).
 
 # How to build the product
@@ -57,12 +57,12 @@ apt-get install -y apt-utils cpio python python3 python3-pip \
 python3-pexpect xz-utils debianutils iputils-ping python3-jinja2 pylint3 vim \
 locales devscripts debhelper gawk wget diffstat texinfo chrpath socat \
 libsdl1.2-dev python-crypto checkpolicy python3-git python3-github bzr pigz m4 \
-lftp openjdk-8-jdk git-core rsync gnupg flex bison gperf build-essential zip \
-curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev \
+lftp openjdk-8-jdk git rsync gnupg flex bison gperf build-essential zip \
+curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses-dev \
 x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils \
 xsltproc unzip bc ninja-build simg2img lz4 zstd python3-pyelftools \
-python3-crypto libncurses5 libssl-dev udev sudo expect graphviz adb aapt \
-libgtk-3-dev protobuf-compiler dosfstools python3-pygit2
+python3-cryptography pycryptodome pylint libncurses5 libssl-dev udev sudo \
+expect graphviz adb aapt libgtk-3-dev protobuf-compiler dosfstools python3-pygit2
 
 apt-get install --reinstall -y ca-certificates
 
@@ -100,12 +100,12 @@ After building stage output files will appear in your build directory (where
 previously `prod-devel-rcar-gen5-vdk.yaml` was placed) - `mmc_flash.img` and
 `artifacts` directory with `X5H-boot-artifacts.tar.bz` archive.
 
-To boot them you need to have Virtualizer U-boot config (`UBoot_5_10_41.vpcfg`)
+To boot them you need to have Virtualizer U-boot config (`UBoot.vpcfg`)
 from EPAM release (refer to "External dependencies" section of these document
 and "VDK configuration" section of EPAM release notes). This file contains
 pathes to target images and addresses that should be used for loading.
 
-To run your images, please, open `UBoot_5_10_41.vpcfg` via Virtualizer and:
+To run your images, please, open `UBoot.vpcfg` via Virtualizer and:
 - substitute original image pathes with unpacked from `X5H-boot-artifacts.tar.bz`
   Dom0 `Image` and `uInitramfs` are located in `yocto/build-dom0/tmp/deploy/images`
   Xen device tree (`r8a78000-X5H-xen.dtb`), Xen image (`xen-x5h.uImage`),

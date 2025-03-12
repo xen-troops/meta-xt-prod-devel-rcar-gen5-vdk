@@ -18,7 +18,7 @@ variables:
   XT_DOMD_CONFIG_NAME: "domd-x5h.cfg"
   XT_DOMU_CONFIG_NAME: "domu-x5h.cfg"
   XT_KERNEL_BRANCH: "v6.1.102/rcar-5.2.0.rc11_vpf.rc16-xt"
-  XT_KERNEL_REV: "${AUTOREV}"
+  XT_KERNEL_REV: "000169861cbda67060691befba5897e1817382d1"
 common_data:
   # Sources used by all yocto-based domains
   sources: &COMMON_SOURCES

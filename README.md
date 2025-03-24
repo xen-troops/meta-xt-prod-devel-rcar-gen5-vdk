@@ -71,7 +71,7 @@ pip3 install pycryptodomex west protobuf grpcio-tools
 
 ## Building
 
-This project is located inside [dedicated Gitlab repository](https://jc.gitlab.renesasworkbench.com/rcar-android/meta-xt-prod-devel-rcar-gen5-vdk)
+This project is located inside [dedicated GitHub repository](https://github.com/xen-troops/meta-xt-prod-devel-rcar-gen5-vdk)
 , which contains release tags. To be able to build, please clone it to separate directory.
 
 Pay attention!

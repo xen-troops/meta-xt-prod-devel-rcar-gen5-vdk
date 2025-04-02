@@ -39,7 +39,7 @@ common_data:
   domd_domu_sources: &DOMD_DOMU_SOURCES
     - type: git
       url: https://github.com/renesas-rcar/meta-renesas.git
-      rev: Renesas-Yocto-v7.10.0 # scarthgap
+      rev: Renesas-Yocto-v7.12.0 # scarthgap
 
   # Common configuration options for all yocto-based domains
   conf: &COMMON_CONF

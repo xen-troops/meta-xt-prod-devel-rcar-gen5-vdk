@@ -23,7 +23,7 @@ Dom0, driver domain DomD and DomU. It is based on following projects:
 
 This product is based on Synopsys VDK releases and Synopsys Virtualizer software.
 Currently it is expected that user has and will run it with Synopsys Virtualizer
-Runtime U-2023.03-SP2 and Synopsys VDK release 4.1.1 (with changes described in
+Runtime U-2023.03-SP2 and Synopsys VDK release 4.3.1 (with changes described in
 "VDK configuration" section of EPAM release notes).
 
 # How to build the product

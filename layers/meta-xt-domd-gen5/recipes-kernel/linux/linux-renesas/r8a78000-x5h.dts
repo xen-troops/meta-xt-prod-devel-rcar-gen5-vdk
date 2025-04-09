@@ -415,15 +415,6 @@
 		#iommu-cells = <1>;
 		dma-coherent;
 	};
-
-	smmu_npu1: iommu@fc400000 {
-		compatible = "arm,smmu-v3";
-		reg = <0x0 0xfc400000 0x0 0x200000>;
-		interrupts = <0 110 4>;
-		interrupt-names = "combined";
-		#iommu-cells = <1>;
-		dma-coherent;
-	};
 	
 	smmu_hscs_ucie: iommu@fcc00000 {
 		compatible = "arm,smmu-v3";

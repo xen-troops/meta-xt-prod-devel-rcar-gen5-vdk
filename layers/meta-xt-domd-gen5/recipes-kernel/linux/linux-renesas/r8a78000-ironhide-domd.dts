@@ -1,6 +1,6 @@
 /dts-v1/;
 
-#include "r8a78000-x5h.dts"
+#include "r8a78000-ironhide.dts"
 #define PHANDLE_GIC (65000)
 
 / {

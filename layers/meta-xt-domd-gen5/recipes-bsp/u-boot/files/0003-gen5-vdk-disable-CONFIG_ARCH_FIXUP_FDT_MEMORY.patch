@@ -1,0 +1,27 @@
+From 72c45a4cc107ee142f52a57fdcbc3bbf06c3fc73 Mon Sep 17 00:00:00 2001
+From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+Date: Fri, 9 May 2025 23:50:36 +0300
+Subject: [PATCH 3/3] gen5: vdk: disable CONFIG_ARCH_FIXUP_FDT_MEMORY
+
+Disable CONFIG_ARCH_FIXUP_FDT_MEMORY to prevent U-Boot from modifying
+the memory {} nodes in the DT passed to the Xen. Enabling this config
+currently leads to memory node dupblication as a result Xen booting
+fails.
+
+Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
+---
+ configs/r8a78000_ironhide_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configs/r8a78000_ironhide_defconfig b/configs/r8a78000_ironhide_defconfig
+index 6d29473d501..c4ad1c1d349 100644
+--- a/configs/r8a78000_ironhide_defconfig
++++ b/configs/r8a78000_ironhide_defconfig
+@@ -19,3 +19,4 @@ CONFIG_ENV_IS_NOWHERE=y
+ CONFIG_SYS_CBSIZE=2048
+ CONFIG_PL01X_SERIAL=y
+ CONFIG_BAUDRATE=1843200
++# CONFIG_ARCH_FIXUP_FDT_MEMORY is not set
+-- 
+2.34.1
+

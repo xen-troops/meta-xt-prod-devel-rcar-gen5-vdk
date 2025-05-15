@@ -13,7 +13,7 @@ as Moulin-based project files provide correct entries in local.conf
 
 This VDK release, that supports running of 3 separate Xen domains - thin
 Dom0, driver domain DomD and DomU. It is based on following projects:
-- U-Boot 2022.01
+- U-Boot 2025.01
 - Dom0 Linux 6.1.102
 - DomD Linux 6.1.102
 - DomU Linux 6.1.102
@@ -23,7 +23,7 @@ Dom0, driver domain DomD and DomU. It is based on following projects:
 
 This product is based on Synopsys VDK releases and Synopsys Virtualizer software.
 Currently it is expected that user has and will run it with Synopsys Virtualizer
-Runtime U-2023.03-SP2 and Synopsys VDK release 4.3.1 (with changes described in
+Runtime U-2023.03-SP2 and Synopsys VDK release 4.4 (with changes described in
 "VDK configuration" section of EPAM release notes).
 
 # How to build the product
@@ -98,7 +98,7 @@ $ ninja && ninja boot_artifacts mmc_flash.img
 
 After building stage output files will appear in your build directory (where
 previously `prod-devel-rcar-gen5-vdk.yaml` was placed) - `mmc_flash.img` and
-`artifacts` directory with `X5H-boot-artifacts.tar.bz` archive.
+`artifacts` directory with `ironhide-boot-artifacts.tar.bz` archive.
 
 To boot them you need to have Virtualizer U-boot config (`UBoot.vpcfg`)
 from EPAM release (refer to "External dependencies" section of these document
@@ -106,11 +106,11 @@ and "VDK configuration" section of EPAM release notes). This file contains
 pathes to target images and addresses that should be used for loading.
 
 To run your images, please, open `UBoot.vpcfg` via Virtualizer and:
-- substitute original image pathes with unpacked from `X5H-boot-artifacts.tar.bz`
+- substitute original image pathes with unpacked from `ironhide-boot-artifacts.tar.bz`
   Dom0 `Image` and `uInitramfs` are located in `yocto/build-dom0/tmp/deploy/images`
-  Xen device tree (`r8a78000-X5H-xen.dtb`), Xen image (`xen-x5h.uImage`),
-  U-boot image (`u-boot.bin`) and Xenpolicy (`xenpolicy-4.19-unstable`) are
-  located in `yocto/build-domd/tmp/deploy/images` of `X5H-boot-artifacts.tar.bz`
+  Xen device tree (`r8a78000-ironhide-xen.dtb`), Xen image (`xen-ironhide.uImage`),
+  U-boot image (`u-boot-ironhide.bin`) and Xenpolicy (`xenpolicy-ironhide`) are
+  located in `yocto/build-domd/tmp/deploy/images` of `ironhide-boot-artifacts.tar.bz`
   unpacked archive
 - change simulation parameter `FlashMemFileName` from default
   `MMC_FLASHMEM0.dat` to path to prepared `mmc_flash.img` from the build folder

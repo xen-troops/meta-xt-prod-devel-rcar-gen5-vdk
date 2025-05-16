@@ -9,7 +9,7 @@ DEPENDS += "u-boot-mkimage-native"
 
 do_deploy:append () {
     if [ -f ${D}/boot/xen ]; then
-        uboot-mkimage -A arm64 -C none -T kernel -a 0x78080000 -e 0x78080000 -n "XEN" -d ${D}/boot/xen ${DEPLOYDIR}/xen-ironhide.uImage
-        ln -sfr ${DEPLOYDIR}/xen-ironhide.uImage ${DEPLOYDIR}/xen-uImage
+        uboot-mkimage -A arm64 -C none -T kernel -a 0x78080000 -e 0x78080000 -n "XEN" -d ${D}/boot/xen ${DEPLOYDIR}/xen-x5h.uImage
+        ln -sfr ${DEPLOYDIR}/xen-x5h.uImage ${DEPLOYDIR}/xen-uImage
     fi
 }

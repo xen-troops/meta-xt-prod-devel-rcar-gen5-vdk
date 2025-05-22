@@ -13,7 +13,7 @@ as Moulin-based project files provide correct entries in local.conf
 
 This VDK release, that supports running of 3 separate Xen domains - thin
 Dom0, driver domain DomD and DomU. It is based on following projects:
-- U-Boot 2022.01
+- U-Boot 2025.01
 - Dom0 Linux 6.1.102
 - DomD Linux 6.1.102
 - DomU Linux 6.1.102

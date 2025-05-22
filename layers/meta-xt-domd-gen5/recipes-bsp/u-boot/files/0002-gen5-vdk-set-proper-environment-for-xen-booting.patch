@@ -1,4 +1,4 @@
-From 5538a818c5be9518c719bcf5c69fab2ea08a148e Mon Sep 17 00:00:00 2001
+From d41996a0d0294c9fb0a0e1bf6ff23b6eabd6de7c Mon Sep 17 00:00:00 2001
 From: Dmytro Firsov <dmytro_firsov@epam.com>
 Date: Thu, 8 May 2025 10:51:09 +0300
 Subject: [PATCH 2/3] gen5: vdk: set proper environment for xen booting
@@ -6,16 +6,16 @@ Subject: [PATCH 2/3] gen5: vdk: set proper environment for xen booting
 Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 Signed-off-by: Dmytro Firsov <dmytro_firsov@epam.com>
 ---
- arch/arm/dts/r8a78000-ironhide.dts  | 2 +-
- configs/r8a78000_ironhide_defconfig | 4 ++--
- configs/renesas_rcar5.config        | 2 +-
- include/configs/rcar-gen5-common.h  | 5 +++--
+ arch/arm/dts/r8a78000-board.dts    | 2 +-
+ configs/rcar-x5h_board_defconfig   | 4 ++--
+ configs/renesas_rcar5.config       | 2 +-
+ include/configs/rcar-gen5-common.h | 5 +++--
  4 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/dts/r8a78000-ironhide.dts b/arch/arm/dts/r8a78000-ironhide.dts
-index 719391bf732..0d40721f98a 100644
---- a/arch/arm/dts/r8a78000-ironhide.dts
-+++ b/arch/arm/dts/r8a78000-ironhide.dts
+diff --git a/arch/arm/dts/r8a78000-board.dts b/arch/arm/dts/r8a78000-board.dts
+index 468e56dd16e..d4412d25ebf 100644
+--- a/arch/arm/dts/r8a78000-board.dts
++++ b/arch/arm/dts/r8a78000-board.dts
 @@ -18,7 +18,7 @@
  	};
  
@@ -25,11 +25,11 @@ index 719391bf732..0d40721f98a 100644
  		stdout-path = "serial1:38400n8";
  	};
  
-diff --git a/configs/r8a78000_ironhide_defconfig b/configs/r8a78000_ironhide_defconfig
-index 0a8c1d0263b..6d29473d501 100644
---- a/configs/r8a78000_ironhide_defconfig
-+++ b/configs/r8a78000_ironhide_defconfig
-@@ -13,8 +13,8 @@ CONFIG_TARGET_IRONHIDE=y
+diff --git a/configs/rcar-x5h_board_defconfig b/configs/rcar-x5h_board_defconfig
+index f87f637e501..5ef5289afaa 100644
+--- a/configs/rcar-x5h_board_defconfig
++++ b/configs/rcar-x5h_board_defconfig
+@@ -13,8 +13,8 @@ CONFIG_TARGET_RCAR_X5H_BOARD=y
  CONFIG_SYS_CLK_FREQ=16666666
  CONFIG_SYS_BOOT_GET_CMDLINE=y
  CONFIG_SYS_BARGSIZE=2048

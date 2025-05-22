@@ -106,11 +106,11 @@ and "VDK configuration" section of EPAM release notes). This file contains
 pathes to target images and addresses that should be used for loading.
 
 To run your images, please, open `UBoot.vpcfg` via Virtualizer and:
-- substitute original image pathes with unpacked from `X5H-boot-artifacts.tar.bz`
+- substitute original image pathes with unpacked from `x5h-boot-artifacts.tar.bz`
   Dom0 `Image` and `uInitramfs` are located in `yocto/build-dom0/tmp/deploy/images`
-  Xen device tree (`r8a78000-X5H-xen.dtb`), Xen image (`xen-x5h.uImage`),
-  U-boot image (`u-boot.bin`) and Xenpolicy (`xenpolicy-4.19-unstable`) are
-  located in `yocto/build-domd/tmp/deploy/images` of `X5H-boot-artifacts.tar.bz`
+  Xen device tree (`r8a78000-x5h-xen.dtb`), Xen image (`xen-x5h.uImage`),
+  U-boot image (`u-boot-x5h.bin`) and Xenpolicy (`xenpolicy-x5h`) are
+  located in `yocto/build-domd/tmp/deploy/images` of `x5h-boot-artifacts.tar.bz`
   unpacked archive
 - change simulation parameter `FlashMemFileName` from default
   `MMC_FLASHMEM0.dat` to path to prepared `mmc_flash.img` from the build folder

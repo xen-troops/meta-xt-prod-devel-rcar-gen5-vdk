@@ -1,4 +1,4 @@
-From 72094656bc1425b740664d76c4b269e3b17021a9 Mon Sep 17 00:00:00 2001
+From 3a954e017d464ce8da0f789a14ab97991e80026a Mon Sep 17 00:00:00 2001
 From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 Date: Fri, 9 May 2025 23:50:36 +0300
 Subject: [PATCH 3/3] gen5: vdk: disable CONFIG_ARCH_FIXUP_FDT_MEMORY
@@ -10,13 +10,13 @@ fails.
 
 Signed-off-by: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 ---
- configs/rcar-x5h_board_defconfig | 1 +
+ configs/r8a78000_ironhide_defconfig | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/configs/rcar-x5h_board_defconfig b/configs/rcar-x5h_board_defconfig
-index 5ef5289afaa..38ee8bdcf3f 100644
---- a/configs/rcar-x5h_board_defconfig
-+++ b/configs/rcar-x5h_board_defconfig
+diff --git a/configs/r8a78000_ironhide_defconfig b/configs/r8a78000_ironhide_defconfig
+index 6d29473d501..c4ad1c1d349 100644
+--- a/configs/r8a78000_ironhide_defconfig
++++ b/configs/r8a78000_ironhide_defconfig
 @@ -19,3 +19,4 @@ CONFIG_ENV_IS_NOWHERE=y
  CONFIG_SYS_CBSIZE=2048
  CONFIG_PL01X_SERIAL=y

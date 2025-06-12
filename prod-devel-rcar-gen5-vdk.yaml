@@ -18,7 +18,7 @@ variables:
   XT_DOMD_CONFIG_NAME: "domd-ironhide.cfg"
   XT_DOMU_CONFIG_NAME: "domu-ironhide.cfg"
   XT_KERNEL_BRANCH: "v6.1.102/rcar-5.2.0.rc11_vpf.rc19-xt"
-  XT_KERNEL_REV: "${AUTOREV}"
+  XT_KERNEL_REV: "fb7593542d09903d74bf9487be9f69301f557142"
 common_data:
   # Sources used by all yocto-based domains
   sources: &COMMON_SOURCES
@@ -39,7 +39,7 @@ common_data:
   domd_domu_sources: &DOMD_DOMU_SOURCES
     - type: git
       url: https://github.com/renesas-rcar/meta-renesas.git
-      rev: Renesas-Yocto-v7.13.0 # scarthgap
+      rev: 5dd27d2b16a901a1b967cfed10de4ad0dce16779 # scarthgap
 
   # Common configuration options for all yocto-based domains
   conf: &COMMON_CONF

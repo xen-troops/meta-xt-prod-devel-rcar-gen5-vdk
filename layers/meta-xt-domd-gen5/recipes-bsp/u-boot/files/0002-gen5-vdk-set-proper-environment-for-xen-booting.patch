@@ -1,4 +1,4 @@
-From 7ad8d8ce574c536fc30c06b802ebe232ece40023 Mon Sep 17 00:00:00 2001
+From d3c0f15b3c5bddd2fcbc2e091f3c3dc361a3eca2 Mon Sep 17 00:00:00 2001
 From: Dmytro Firsov <dmytro_firsov@epam.com>
 Date: Thu, 8 May 2025 10:51:09 +0300
 Subject: [PATCH 2/3] gen5: vdk: set proper environment for xen booting
@@ -26,14 +26,14 @@ index 719391bf732..0d40721f98a 100644
  	};
  
 diff --git a/configs/r8a78000_ironhide_defconfig b/configs/r8a78000_ironhide_defconfig
-index b19825a1e3a..6d29473d501 100644
+index 0a8c1d0263b..6d29473d501 100644
 --- a/configs/r8a78000_ironhide_defconfig
 +++ b/configs/r8a78000_ironhide_defconfig
 @@ -13,8 +13,8 @@ CONFIG_TARGET_IRONHIDE=y
  CONFIG_SYS_CLK_FREQ=16666666
  CONFIG_SYS_BOOT_GET_CMDLINE=y
  CONFIG_SYS_BARGSIZE=2048
--CONFIG_BOOTCOMMAND="booti 0x61080000 - 0x61000000"
+-CONFIG_BOOTCOMMAND="booti 0x48080000 - 0x48000000"
 -CONFIG_BOOTARGS="console=ttyAMA0,38400n8 cma=800M root=/dev/vda"
 +CONFIG_USE_BOOTCOMMAND=y
 +CONFIG_BOOTCOMMAND="bootm 0x48080000 0x84000000 0x48000000"

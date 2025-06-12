@@ -1,7 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-BRANCH = "v2025.01/rcar-7.0.0.rc2_vpf.rc4"
-SRCREV = "8d4340bf361b53ce7a0c17d51816bdf177d546f8"
+BRANCH = "v2025.01/rcar-7.0.0.rc2"
+SRCREV = "ad4e16cb4a9cc88b469bef8ff3e80f9657031786"
 
 SRC_URI:append = "\
     file://0001-gen5-vdk-switch-to-PL011.patch \

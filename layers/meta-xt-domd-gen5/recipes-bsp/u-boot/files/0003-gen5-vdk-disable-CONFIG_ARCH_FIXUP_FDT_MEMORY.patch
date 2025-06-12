@@ -1,4 +1,4 @@
-From 3a954e017d464ce8da0f789a14ab97991e80026a Mon Sep 17 00:00:00 2001
+From 222814fae22371631297932d113e72b5e43487b8 Mon Sep 17 00:00:00 2001
 From: Leonid Komarianskyi <leonid_komarianskyi@epam.com>
 Date: Fri, 9 May 2025 23:50:36 +0300
 Subject: [PATCH 3/3] gen5: vdk: disable CONFIG_ARCH_FIXUP_FDT_MEMORY

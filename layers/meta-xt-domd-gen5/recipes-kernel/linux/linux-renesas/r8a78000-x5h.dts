@@ -136,6 +136,118 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0x0 0x7ffff00>;
 		};
+		cpu@40000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x40000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@40100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x40100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@40200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x40200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@40300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x40300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@50000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x50000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@50100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x50100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@50200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x50200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@50300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x50300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@60000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x60000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@60100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x60100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@60200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x60200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@60300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x60300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@70000 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x70000>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@70100 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x70100>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@70200 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x70200>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
+		cpu@70300 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x70300>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x7ffff00>;
+		};
 	};
 
 	memory@48000000 {
